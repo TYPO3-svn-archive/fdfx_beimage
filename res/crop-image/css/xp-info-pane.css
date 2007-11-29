@@ -1,0 +1,15 @@
+body#ext-fdfx-be-image-cm1-index-php {width:auto;}
+div.typo3-bigDoc{width:auto;margin:10px;}
+body#ext-fdfx-be-image-cm1-index-php div.crop_content{float:left; border:1px solid grey;background-color:black;margin-top:5px;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset{width:150px; height:70px; float:left;}
+* html body#ext-fdfx-be-image-cm1-index-php  fieldset{width:170px; height:86px; float:left;padding:5px;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset legend{font-weight:bold;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item{width:75px;float:left;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item-crop-x{clear:both;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item label{width:80px;font-weight:bold;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item input{}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item input,
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item select,
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item label{display:block;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item input.button{clear:both;float:right;margin-bottom:11px;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset #crop_progressBar{clear:both;float:right;margin-top:5px;margin-right:10px;width:200px;display:none;}
