@@ -206,8 +206,8 @@ init_imageCrop();
 			}
 		}
 		$content .='
-	<link rel="stylesheet" href="'.$extPath.'css/xp-info-pane.css">
-	<link rel="stylesheet" href="'.$extPath.'css/image-crop.css">
+	<link rel="stylesheet" href="'.$extPath.'css/xp-info-pane.css"/>
+	<link rel="stylesheet" href="'.$extPath.'css/image-crop.css" />
 	<script type="text/javascript" src="'.$extPath.'js/fdfx_error.js"></script>
 	<script type="text/javascript" src="'.$extPath.'js/xp-info-pane.js"></script>
 	<script type="text/javascript" src="'.$extPath.'js/ajax.js"></script>
