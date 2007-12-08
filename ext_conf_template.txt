@@ -10,3 +10,5 @@ IS_ABSOLUTE=0
 NEW_PATH= fdfx_image
 #cat=Dimensions;type=string;label=Resize Commmand: For Actual versions of ImageMagick this is 'resize'. If you experience problems with older version (e.g. 4.2.3) change that to 'size'
 RESIZE_COMMAND=resize
+#cat=Dimensions; type=string; label=Fixed Size: defines fixed sizes for final image manipulation. Can be overwritten in user TSConfig
+FIXED_SIZE=640x480=VGA,800x600=WGA,1024x768=XGA

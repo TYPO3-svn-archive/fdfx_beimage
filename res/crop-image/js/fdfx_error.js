@@ -45,7 +45,7 @@
             if (errorLogger==null || errorLogger.closed)
             {
                 var errorLoggerWindowOpen=true;
-                errorLogger=window.open("about:blank","error","width=300,height=400,resize=1");
+                errorLogger=window.open("about:blank","error","width=300,height=400,resizable=yes,scrollbars=yes");
                 errorLogger.document.open();
                 errorLoggerWindowOpen=false;
             }

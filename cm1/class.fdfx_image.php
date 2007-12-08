@@ -126,7 +126,7 @@ class fdfx_image
 		if ($this->conf['SAME_PATH'])
 		{
 			$dirname=dirname($file);
-		} 
+		}
 		elseif ($this->conf['IS_ABSOLUTE'])
 		{
 			if (t3lib_div::isAllowedAbsPath($this->conf['NEW_PATH']))
@@ -138,7 +138,7 @@ class fdfx_image
 				$this->errorMsg=$this->getMsg('error_absolute_path_notaccessable',array($this->conf['NEW_PATH']));
 //				$this->errorMsg='Path '.$this->conf['NEW_PATH'].' should be absolute but can not be accessed by TYPO3.';
 			}
-		} 
+		}
 		else
 		{
 			$data=array(
@@ -151,7 +151,7 @@ class fdfx_image
 				$this->errorMsg=$this->getMsg('error_relative_folder_creation',array($this->conf['NEW_PATH'],$data['target']));
 //				$this->errorMsg='Can not create relative folder '.$this->conf['NEW_PATH'].' in path '.$data['target'];
 			}
-		} 
+		}
 		return $dirname;
 	}
 	function _imageCrop()
@@ -164,7 +164,7 @@ class fdfx_image
 		{
 			$this->params['percentSize']=100;
 		}
-		$percentSize = preg_replace("/[^0-9]/si", "", $this->params['percentSize']);
+		$percentSize = preg_replace("/[^0-9.]/si", "", $this->params['percentSize']);
 		if ($percentSize > 200)
 		{
 			$percentSize = 200;
@@ -204,13 +204,13 @@ class fdfx_image
 						$saveImgInfo=$this->_storeImage('crop.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,&$extFF);
 //						$this->content .= "alert('Image saved to ".$saveImgInfo[3]."')";
 						$this->content .= "alert('".$this->getMsg('success_image_saved',array($saveImgInfo[3]))."');";
-					} 
+					}
 					else
 					{
 						$this->content .="alert('".$this->getMsg('error').$this->errorMsg."');";
 					}
-				}	
-			} 
+				}
+			}
 			else
 			{
 				$this->content .="alert('".$this->getMsg('error_no_image_info')."');";
@@ -274,12 +274,12 @@ if (isset($_GET['cmd']))
 	require_once (PATH_t3lib.'class.t3lib_extfilefunc.php');
 	require_once(PATH_typo3.'sysext/lang/lang.php');
 	$LANG = t3lib_div::makeInstance('language');
-	$LANG->init($BE_USER->uc['lang']);	
-	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.php');	
+	$LANG->init($BE_USER->uc['lang']);
+	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.php');
 	$SOBE = t3lib_div :: makeInstance('fdfx_image');
 	$SOBE->init();
 	if ($SOBE->continueIt)
-	{	
+	{
 		//got valid values, no manual hack attack
 		$SOBE->main();
 		$SOBE->printContent();

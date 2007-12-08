@@ -53,9 +53,13 @@ class fdfx_Image_Basic
 			{
 				$this->conf['MAX_HEIGHT'] = $userConf['properties']['maxHeight'];
 			}
+			if (isset($userConf['properties']['fixedSize']) && $userConf['properties']['fixedSize']!='')
+			{
+				$this->conf['FIXED_SIZE'] = $userConf['properties']['fixedSize'];
+			}
 		}
 	}
-	
+
 	function setFileName($fName)
 	{
 		if (file_exists($fName))
@@ -70,6 +74,13 @@ class fdfx_Image_Basic
 	function _getCropContent()
 	{
 		$content='';
+		$options='';
+		$optionLines=explode(',',$this->conf['FIXED_SIZE']);
+		foreach($optionLines as $line)
+		{
+			list($value,$option)=explode('=',$line);
+			$options .='<option value="'.$value.'">'.$option.'</option>';
+		}
 		$fI = t3lib_div::split_fileref($this->fileName);
 		$fileNameLocal=substr($this->fileName,strlen(PATH_site));
 		$fileName=t3lib_div::isFirstPartOfStr($this->fileName,PATH_site)?'../../../../'.(($this->fileNameLocal)?$this->fileNameLocal:$fileNameLocal):$fI['file'];
@@ -106,6 +117,14 @@ $content='
     	<label for=""input_crop_height">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_height').'</label>
         <input type="text" class="textInput" name="crop_height" id="input_crop_height" />
     </div>
+    <div class="item item-ratio">
+    	<label for=""input_ratiol">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_ratio').'</label>
+		<input type="checkbox" name="ratio" id="input_ratio" value=""/>
+    </div>
+    <div class="item item-lock">
+    	<label for=""input_lock">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_lock').'</label>
+		<input type="checkbox" name="lock" id="input_lock" value=""/>
+    </div>
 </fieldset>
 <fieldset id="fdfx-be-image-crop-output">
 	<legend>'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_legend_output').'</legend>
@@ -121,16 +140,25 @@ $content='
 			<option value="png">PNG</option>
 		</select>
     </div>
+    <div class="item item-fixedsize">
+    	<label for=""input_fixedsize">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_fixedsize').'</label>
+		<select class="textInput" id="input_fixedsize">
+			<option value=""></option>
+'.$options.'
+		</select>
+		<input type="button" class="setbutton" onclick="cropScript_setSize(this)" value="'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_setsize').'" />
+    </div>
+
 </fieldset>
 <fieldset id="fdfx-be-image-crop-process">
 	<legend>'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_legend_process').'</legend>
     <div class="item item-preview">
     	<label for=""input_preview">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_preview').'</label>
-		<input type="radio" class="textInput" name="store" id="input_preview" value="1" checked="checked" />
+		<input type="radio" name="store" id="input_preview" value="1" checked="checked" />
     </div>
     <div class="item item-store">
     	<label for=""input_store">'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_label_store').'</label>
-		<input type="radio" class="textInput" name="store" id="input_store" value="2" />
+		<input type="radio" name="store" id="input_store" value="2" />
     </div>
     <div class="item crop-botton">
            <input type="button" class="button" onclick="cropScript_executeCrop(this)" value="'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_submit').'" />
@@ -144,13 +172,13 @@ $content='
 setCHash("'.fdfx_image :: getEncryptionMd5($GLOBALS['TYPO3_CONF_VARS']["SYS"]["encryptionKey"], array('crop',$fileNameLocal)).'");
 init_imageCrop();
 </script>
-'; 
+';
 		return $content;
 	}
 	function _getCropHeader()
 	{
 		global $BACK_PATH;
-		
+
 		$extPath = $BACK_PATH.t3lib_extMgm::extRelPath($this->extKey).'res/crop-image/';
 		$imgObj = t3lib_div::makeInstance('t3lib_stdGraphic');
 		$imgObj->init();
@@ -180,31 +208,32 @@ init_imageCrop();
 		$content .='
 	<link rel="stylesheet" href="'.$extPath.'css/xp-info-pane.css">
 	<link rel="stylesheet" href="'.$extPath.'css/image-crop.css">
+	<script type="text/javascript" src="'.$extPath.'js/fdfx_error.js"></script>
 	<script type="text/javascript" src="'.$extPath.'js/xp-info-pane.js"></script>
 	<script type="text/javascript" src="'.$extPath.'js/ajax.js"></script>
 	<script type="text/javascript">
 	var crop_script_server_file ="'.$BACK_PATH.t3lib_extMgm::extRelPath($this->extKey).'cm1/class.fdfx_image.php";
-	
+
 	var cropToolBorderWidth = 1;	// Width of dotted border around crop rectangle
 	var smallSquareWidth = 7;	// Size of small squares used to resize crop rectangle
-	
+
 	// Size of image shown in crop tool
 	var crop_imageWidth = '.$width.';
 	var crop_imageHeight = '.$height.';
-	
+
 	// Size of original image
 	var crop_originalImageWidth = '.$imgInfo[0].';
 	var crop_originalImageHeight ='.$imgInfo[1].';
-	
+
 	var crop_minimumPercent = 10;	// Minimum percent - resize
 	var crop_maximumPercent = 200;	// Maximum percent -resize
-	
-	
+
+
 	var crop_minimumWidthHeight = 15;	// Minimum width and height of crop area
-	
+
 	var updateFormValuesAsYouDrag = true;	// This variable indicates if form values should be updated as we drag. This process could make the script work a little bit slow. That is why this option is set as a variable.
 	if(!document.all)updateFormValuesAsYouDrag = false;	// Enable this feature only in IE
-	
+
 	/* End of variables you could modify */
 	function setCHash(chash)
 	{
@@ -216,7 +245,7 @@ init_imageCrop();
 	extensionPath="'.$BACK_PATH.t3lib_extMgm::extRelPath($this->extKey).'res/crop-image/";
 	</script>
 ';
-		return $content;		
+		return $content;
 	}
 }
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/lib/class.fdfx_image_basic.php'])	{

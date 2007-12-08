@@ -1,4 +1,13 @@
 (add new changes on top of this file)
+07-12-08 Peter Russ <peter.russ@4many.net>
+1.6.0 (alpha1)
+	* bugfix of changing crop dimensions on mouse move
+	* added new feature for croping
+	* keep ratio and locking
+	* updates now fields automatically when moving
+	* added preset for output size
+1.5.0
+	* bug fix relies due to a bug that was caused by older versions of IM 4.2.3 as the command for resizing was	changed from size tor resize :-(
 06-12-09 Peter Russ <peter.russ@4many.net>
 1.4.0
 	* added support for DAM
@@ -22,7 +31,7 @@
 	* major layout changes to support higher screen resolutions
 	* added configuration on a user base TSCONFIG
 	* adjusted manual, error fixing
-	
+
 06-07-19 Peter Russ  <peter.russ@4many.net>
 
 	* Initial release

@@ -11,5 +11,8 @@ body#ext-fdfx-be-image-cm1-index-php  fieldset .item input{}
 body#ext-fdfx-be-image-cm1-index-php  fieldset .item input,
 body#ext-fdfx-be-image-cm1-index-php  fieldset .item select,
 body#ext-fdfx-be-image-cm1-index-php  fieldset .item label{display:block;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item-fixedsize{width:150px;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item-fixedsize select {display:inline;}
 body#ext-fdfx-be-image-cm1-index-php  fieldset .item input.button{clear:both;float:right;margin-bottom:11px;}
+body#ext-fdfx-be-image-cm1-index-php  fieldset .item input.setbutton{float:none;margin-left:5px;display:inline;}
 body#ext-fdfx-be-image-cm1-index-php  fieldset #crop_progressBar{clear:both;float:right;margin-top:5px;margin-right:10px;width:200px;display:none;}
