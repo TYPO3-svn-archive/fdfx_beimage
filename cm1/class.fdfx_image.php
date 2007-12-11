@@ -41,8 +41,10 @@ class fdfx_image
 	var $encryptionKey = '';
 	var $backPath='../../../';
 	var $errorMsg='';
-	function _init()
+	var $error='';
+	function _init($extKey='fdfx_be_image')
 	{
+		$this->extKey=$extKey;
 		$this->cmd = strtolower(t3lib_div :: _GP('cmd'));
 		$this->preview = (t3lib_div :: _GP('preview') == 1);
 		$this->store = (!$this->preview && (t3lib_div :: _GP('store') == 2));
@@ -50,8 +52,24 @@ class fdfx_image
 		{
 			$this->preview=true;
 		}
-		$this->conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['fdfx_be_image']);
+		$this->conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$extKey]);
 		$this->encryptionKey = $GLOBALS['TYPO3_CONF_VARS']["SYS"]["encryptionKey"];
+		$userConf = $GLOBALS['BE_USER']->getTSConfig(strtoupper($extKey));
+		if (isset ($userConf['properties']) && is_array($userConf['properties']))
+		{
+			if (isset ($userConf['properties']['maxWidth']) && $userConf['properties']['maxWidth'] > 0)
+			{
+				$this->conf['MAX_WIDTH'] = $userConf['properties']['maxWidth'];
+			}
+			if (isset ($userConf['properties']['maxHeight']) && $userConf['properties']['maxHeight'] > 0)
+			{
+				$this->conf['MAX_HEIGHT'] = $userConf['properties']['maxHeight'];
+			}
+			if (isset($userConf['properties']['fixedSize']) && $userConf['properties']['fixedSize']!='')
+			{
+				$this->conf['FIXED_SIZE'] = $userConf['properties']['fixedSize'];
+			}
+		}
 	}
 	function _checkMd5($checkArr = array ())
 	{
@@ -63,8 +81,10 @@ class fdfx_image
 			{
 				$ar[] = $this->params[$key];
 			}
-			$isOk = ($md5 == fdfx_image :: getEncryptionMd5($this->encryptionKey, $ar));
+			$md5Check=fdfx_image :: getEncryptionMd5($this->encryptionKey, $ar);
+			$isOk = ($md5 == $md5Check);
 		}
+		$this->error=($isOk)?'':'MD5 error in hash! No valid access. MD5 was '.$md5.' and should be '.$md5Check;
 		return $isOk;
 	}
 	/*
@@ -87,6 +107,11 @@ class fdfx_image
 		{
 			case 'crop' :
 				$params = array ('cmd', 'x', 'y', 'width', 'height', 'image_ref', 'percentSize', 'convertTo');
+				$checkArray = array ('cmd', 'image_ref');
+				$this->continueIt = $this->_getParams($params, $checkArray);
+				break;
+			case 'rotate':
+				$params = array ('cmd', 'angle', 'image_ref');
 				$checkArray = array ('cmd', 'image_ref');
 				$this->continueIt = $this->_getParams($params, $checkArray);
 				break;
@@ -136,7 +161,6 @@ class fdfx_image
 			else
 			{
 				$this->errorMsg=$this->getMsg('error_absolute_path_notaccessable',array($this->conf['NEW_PATH']));
-//				$this->errorMsg='Path '.$this->conf['NEW_PATH'].' should be absolute but can not be accessed by TYPO3.';
 			}
 		}
 		else
@@ -145,14 +169,82 @@ class fdfx_image
 				'data' => $this->conf['NEW_PATH'],
 				'target'=> dirname($file),
 			);
-			$dirname=$extFF->func_newfolder($data);
+			$dirname=$data['target'].'/'.$data['data'];
+			if (!file_exists($dirname))
+			{
+				$dirname=$extFF->func_newfolder($data);
+			}
 			if (!$dirname)
 			{
 				$this->errorMsg=$this->getMsg('error_relative_folder_creation',array($this->conf['NEW_PATH'],$data['target']));
-//				$this->errorMsg='Can not create relative folder '.$this->conf['NEW_PATH'].' in path '.$data['target'];
 			}
 		}
 		return $dirname;
+	}
+	function _sessionSaveFilename($filename)
+	{
+		$array=$GLOBALS['BE_USER']->getSessionData($this->extKey);
+		$array['fileName']=$filename;
+		$GLOBALS['BE_USER']->setAndSaveSessionData($this->extKey,$array);
+	}
+	function _imageRotate()
+	{
+		$angle=preg_replace("/[^0-9]/si", "", $this->params['angle'])%360;
+		if ($angle)
+		{
+			$angle -=($angle==180)?0:180;
+			$imgObj = t3lib_div :: makeInstance('t3lib_stdGraphic');
+			$imgObj->init();
+			$imgObj->mayScaleUp = 0;
+			$imgObj->tempPath = PATH_site.$imgObj->tempPath;
+			$file=t3lib_div::getFileAbsFileName($this->params['image_ref']);
+			$fI=pathinfo($file);
+			$imgObj->filenamePrefix=basename($file,'.'.$fI['extension']).'.';
+			$imgInfo = $imgObj->getImageDimensions($file);
+			if ($imgInfo)
+			{
+				$convertParamAdd = " -rotate ".$angle;
+				$imgInfoNew = $imgObj->imageMagickConvert($file,'','','',$convertParamAdd,'','',1);
+				$extFF=$this->_initExtFileFunc();
+				$dirName=$this->_getDirname($file,&$extFF);
+				if ($dirName)
+				{
+					// saved
+					$imgInfoNew=$this->_storeImage('rotate.'.$angle.'.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,&$extFF);
+					if ($imgInfoNew[0]>$this->conf['MAX_WIDTH'] || $imgInfoNew[1]>$this->conf['MAX_HEIGHT'])
+					{
+						//we scale the image to display it in BE
+						$filenameOrg=$imgInfoNew[3];
+						$file=t3lib_div::getFileAbsFileName($imgInfoNew[3]);
+						$imgInfoNew=$imgObj->imageMagickConvert($file,'web','','',' -'.$this->conf['RESIZE_COMMAND'].' '.$this->conf['MAX_WIDTH'].'x'.$this->conf['MAX_HEIGHT'],'','',1);
+						if (is_array($imgInfoNew))
+						{
+							$this->fileNameLocal=substr($imgInfoNew[3],strlen(PATH_site));
+							$width=$imgInfoNew[0];
+							$height=$imgInfoNew[1];
+						}
+						$this->_sessionSaveFilename($file);
+					}
+				}
+				else
+				{
+					$this->error =$this->getMsg('error').$this->errorMsg;
+				}
+				$this->content .= "{";
+				$this->content .= "error:'".$this->error."'\n";
+				$this->content .= ",image_ref:'".$filenameOrg."'\n";
+				$this->content .= ",path:'".$this->backPath.'../'.substr($imgInfoNew[3],strlen(PATH_site))."'\n";
+				$this->content .= ",width:".$imgInfoNew[0]."\n";
+				$this->content .= ",height:".$imgInfoNew[1]."\n";
+				$this->content .= ",chash:'".fdfx_image :: getEncryptionMd5($this->encryptionKey, array('rotate',$filenameOrg))."'\n";
+				$this->content .= ",history:0\n";
+				$this->content .= "}";
+			} else {
+				$this->content .= "{";
+				$this->content .= "error:'".$file."'\n";
+				$this->content .= "}";
+			}
+		}
 	}
 	function _imageCrop()
 	{
@@ -243,6 +335,9 @@ class fdfx_image
 				case 'crop' :
 					$this->_imageCrop();
 					break;
+				case 'rotate':
+					$this->_imageRotate();
+					break;
 				default :
 					break;
 			}
@@ -275,7 +370,7 @@ if (isset($_GET['cmd']))
 	require_once(PATH_typo3.'sysext/lang/lang.php');
 	$LANG = t3lib_div::makeInstance('language');
 	$LANG->init($BE_USER->uc['lang']);
-	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.php');
+	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
 	$SOBE = t3lib_div :: makeInstance('fdfx_image');
 	$SOBE->init();
 	if ($SOBE->continueIt)
@@ -283,6 +378,30 @@ if (isset($_GET['cmd']))
 		//got valid values, no manual hack attack
 		$SOBE->main();
 		$SOBE->printContent();
+	}
+}
+if (isset($_POST['cmd']))
+{
+	require_once ('conf.php');
+	require_once ($BACK_PATH.'init.php');
+	require_once (PATH_t3lib.'class.t3lib_stdgraphic.php');
+	require_once (PATH_t3lib.'class.t3lib_basicfilefunc.php');
+	require_once (PATH_t3lib.'class.t3lib_extfilefunc.php');
+	require_once(PATH_typo3.'sysext/lang/lang.php');
+	$LANG = t3lib_div::makeInstance('language');
+	$LANG->init($BE_USER->uc['lang']);
+	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
+	$SOBE = t3lib_div :: makeInstance('fdfx_image');
+	$SOBE->init();
+	if ($SOBE->continueIt)
+	{
+		//got valid values, no manual hack attack
+		$SOBE->main();
+		$SOBE->printContent();
+	} else {
+		echo "{";
+		echo "error:'".$SOBE->error."'\n";
+		echo "}";
 	}
 }
 ?>

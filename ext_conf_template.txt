@@ -1,7 +1,7 @@
 # cat=Dimensions; type=int; label=Maximum Width: set the maximum image width. Image wider than that will be resized to speed up display and reduce bandwidth.
 MAX_WIDTH=400
 # cat=Dimensions; type=int; label=Maximum Height: set the maximum image height. Image heigher than that will be resized to speed up display and reduce bandwidth.
-MAX_HEIGHT=300
+MAX_HEIGHT=400
 # cat=Dimensions; type=boolean; label=Same Path: if set manipulated image will be saved in the same path as original. If you want to store the new image in the same orginal path, check the value.
 SAME_PATH=0
 # cat=Dimensions; type=boolean; label=Path is Absolute: if set the path to save the manipulated image will be absolute otherwise relative to the path of the original image.

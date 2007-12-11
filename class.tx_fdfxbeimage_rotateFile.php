@@ -43,9 +43,9 @@ require_once (PATH_txdam.'lib/class.tx_dam_actionbase.php');
  * @package fdfx_be_image
  * @see tx_dam_actionbase
  */
-class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
+class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 
-	var $cmd = 'tx_fdfxbeimage_modfunc1';
+	var $cmd = 'tx_fdfxbeimage_modrotate';
 
 	/**
 	 * Defines the types that the object can render
@@ -104,9 +104,9 @@ class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 		if ($this->disabled) {
 			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_i.gif';
 		} else {
-			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon.gif';
+			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon-rotate.gif';
 		}
-		$icon = '<img src="'.$iconFile.'" width="12px" height="12px"'.$this->_cleanAttribute($addAttribute).' alt="" />';
+		$icon = '<img src="'.$iconFile.'" width="12px" height="12px"'.$this->_cleanAttribute($addAttribute).' alt=""/>';
 
 		return $icon;
 	}
@@ -118,7 +118,7 @@ class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 	 * @return	string
 	 */
 	function getDescription () {
-		return $GLOBALS['LANG']->sL('LLL:EXT:fdfx_be_image/cm1/locallang.xml:function1');
+		return $GLOBALS['LANG']->sL('LLL:EXT:fdfx_be_image/cm1/locallang.xml:function2');
 	}
 
 
@@ -146,8 +146,8 @@ class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_cropFile.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_cropFile.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_rotateFile.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_rotateFile.php']);
 }
 
 ?>

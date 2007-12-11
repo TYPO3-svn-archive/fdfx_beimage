@@ -11,7 +11,7 @@
         <languageKey index="default" type="array">
             <label index="tx_fdfxbeimage_title">FXImage</label>
             <label index="tx_fdfxbeimage_function1">Crop Image</label>
-            <label index="tx_fdfxbeimage_function2">T.B.D</label>
+            <label index="tx_fdfxbeimage_function2">Rotate Image</label>
             <label index="tx_fdfxbeimage_function3">T.B.D</label>
             <label index="tx_fdfxbeimage_crop_text">To select crop area, drag and move the dotted rectangle or type in values directly into the form.</label>
             <label index="tx_fdfxbeimage_crop_section_header">Image crop</label>
@@ -32,7 +32,23 @@
             <label index="tx_fdfxbeimage_crop_label_store">Store:</label>
             <label index="tx_fdfxbeimage_crop_submit">Crop it!</label>
             <label index="tx_fdfxbeimage_crop_setsize">+</label>
+            <label index="tx_fdfxbeimage_rotate_text">Click on the desired action. After you got the result of your choice save the image.</label>
+            <label index="tx_fdfxbeimage_rotate_section_header">Rotate Image</label>
+            <label index="tx_fdfxbeimage_rotate_modes">Rotate</label>
+            <label index="tx_fdfxbeimage_rotate_ccw">90&amp;deg;CCW</label>
+            <label index="tx_fdfxbeimage_rotate_cw">90&amp;deg;CW</label>
+            <label index="tx_fdfxbeimage_rotate_reset">Reset</label>
+            <label index="tx_fdfxbeimage_rotate_save">Save</label>
             <label index="tx_fdfxbeimage_error">ERROR: </label>
+            <label index="tx_fdfxbeimage_warningLostChanges">All unsaved changes made to the image will lost, are you sure you wish to continue?</label>
+            <label index="tx_fdfxbeimage_warningReset">All unsaved changes made to the image will be lost, are you sure you wish to continue?</label>
+            <label index="tx_fdfxbeimage_warningResetEmpty">No changes has been made to the image so far!</label>
+            <label index="tx_fdfxbeimage_warningEditorClose">Are you sure to close the window?</label>
+            <label index="tx_fdfxbeimage_warningUndoImage">Are you sure to restore the image to previous state?</label>
+            <label index="tx_fdfxbeimage_warningFlipHorizotal">Are you sure to flip the image horizotally?</label>
+            <label index="tx_fdfxbeimage_warningFlipVertical">Are you sure to flip the image vertically?</label>
+            <label index="tx_fdfxbeimage_noChangeMadeBeforeSave">You have not made any changes to the images.</label>
+            <label index="tx_fdfxbeimage_imageSaved">The new image saved as </label>
             <label index="tx_fdfxbeimage_error_no_image_info">No ImageInfo!</label>
             <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Path %1 should be absolute but can not be accessed by TYPO3</label>
             <label index="tx_fdfxbeimage_error_relative_folder_creation">Can not create relative folder %1 in path %2</label>
@@ -43,7 +59,7 @@
         <languageKey index="de" type="array">
             <label index="tx_fdfxbeimage_title">FXImage</label>
             <label index="tx_fdfxbeimage_function1">Bild beschneiden</label>
-            <label index="tx_fdfxbeimage_function2">T.B.D</label>
+            <label index="tx_fdfxbeimage_function2">Bild drehen</label>
             <label index="tx_fdfxbeimage_function3">T.B.D</label>
             <label index="tx_fdfxbeimage_crop_text">Um Bereich fÃ¼r Zuschnitt auszuwÃ¤hlen, ziehen sie mit den Rechtecken die punktierte Linen an die gewÃ¼nschte Position oder geben Sie die Werte direkt in die Felder ein.</label>
             <label index="tx_fdfxbeimage_crop_section_header">Bild beschneiden</label>
@@ -61,6 +77,12 @@
             <label index="tx_fdfxbeimage_crop_label_preview">Vorschau:</label>
             <label index="tx_fdfxbeimage_crop_label_store">Speichern:</label>
             <label index="tx_fdfxbeimage_crop_submit">zuschneiden</label>
+            <label index="tx_fdfxbeimage_rotate_text">Klicken Sie auf erforderliche Aktion. Entspricht das Resultat Ihren Vorstellungen, speichern Sie das Ergebnis.</label>
+            <label index="tx_fdfxbeimage_rotate_section_header">Bild drehen</label>
+            <label index="tx_fdfxbeimage_rotate_ccw">90&amp;deg;L</label>
+            <label index="tx_fdfxbeimage_rotate_cw">90&amp;deg;R</label>
+            <label index="tx_fdfxbeimage_rotate_reset">Reset</label>
+            <label index="tx_fdfxbeimage_rotate_save">Speichern</label>
             <label index="tx_fdfxbeimage_error">Fehler: </label>
             <label index="tx_fdfxbeimage_error_no_image_info">Keine Bildinformation verfÃ¼gbar</label>
             <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Absoluter Pfad %1 kann von TYPO3 nicht geï¿½ffnet werden!</label>
