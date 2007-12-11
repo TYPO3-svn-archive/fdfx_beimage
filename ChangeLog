@@ -1,11 +1,14 @@
 (add new changes on top of this file)
 07-12-08 Peter Russ <peter.russ@4many.net>
-1.6.0 (alpha1)
+1.6.0
 	* bugfix of changing crop dimensions on mouse move
-	* added new feature for croping
+	* added new feature for cropping
 	* keep ratio and locking
 	* updates now fields automatically when moving
 	* added preset for output size
+	* added rotation
+	* manual corrected
+	* jQuery support added for rotation
 1.5.0
 	* bug fix relies due to a bug that was caused by older versions of IM 4.2.3 as the command for resizing was	changed from size tor resize :-(
 06-12-09 Peter Russ <peter.russ@4many.net>
