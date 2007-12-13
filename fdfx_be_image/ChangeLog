@@ -1,0 +1,40 @@
+(add new changes on top of this file)
+07-12-08 Peter Russ <peter.russ@4many.net>
+1.6.0
+	* bugfix of changing crop dimensions on mouse move
+	* added new feature for cropping
+	* keep ratio and locking
+	* updates now fields automatically when moving
+	* added preset for output size
+	* added rotation
+	* manual corrected
+	* jQuery support added for rotation
+1.5.0
+	* bug fix relies due to a bug that was caused by older versions of IM 4.2.3 as the command for resizing was	changed from size tor resize :-(
+06-12-09 Peter Russ <peter.russ@4many.net>
+1.4.0
+	* added support for DAM
+06-11-07 Peter Russ <peter.russ@4many.net>
+1.3.0
+	* support for local installation
+	* change to run also on local installation req. move of class.fdfx_image.php to folder cm1
+06-10-12 Peter Russ <peter.russ@4many.net>
+1.2.0
+	* enabled non admin user to to access the module
+
+06-07-25 Peter Russ <peter.russ@4many.net>
+1.1.1
+	* bugfix: var $cmd was defined twice causing trouble on some systems
+1.1.0
+	* bugfix: got no values when user TSCONFIG was NOT set :-(
+
+06-07-24 Peter Russ <peter.russ@4many.net>
+1.0.0
+	* added language support
+	* major layout changes to support higher screen resolutions
+	* added configuration on a user base TSCONFIG
+	* adjusted manual, error fixing
+
+06-07-19 Peter Russ  <peter.russ@4many.net>
+
+	* Initial release
