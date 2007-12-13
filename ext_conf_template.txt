@@ -1,7 +1,7 @@
 # cat=Dimensions; type=int; label=Maximum Width: set the maximum image width. Image wider than that will be resized to speed up display and reduce bandwidth.
 MAX_WIDTH=400
 # cat=Dimensions; type=int; label=Maximum Height: set the maximum image height. Image heigher than that will be resized to speed up display and reduce bandwidth.
-MAX_HEIGHT=300
+MAX_HEIGHT=400
 # cat=Dimensions; type=boolean; label=Same Path: if set manipulated image will be saved in the same path as original. If you want to store the new image in the same orginal path, check the value.
 SAME_PATH=0
 # cat=Dimensions; type=boolean; label=Path is Absolute: if set the path to save the manipulated image will be absolute otherwise relative to the path of the original image.
@@ -10,3 +10,5 @@ IS_ABSOLUTE=0
 NEW_PATH= fdfx_image
 #cat=Dimensions;type=string;label=Resize Commmand: For Actual versions of ImageMagick this is 'resize'. If you experience problems with older version (e.g. 4.2.3) change that to 'size'
 RESIZE_COMMAND=resize
+#cat=Dimensions; type=string; label=Fixed Size: defines fixed sizes for final image manipulation. Can be overwritten in user TSConfig
+FIXED_SIZE=640x480=VGA,800x600=WGA,1024x768=XGA

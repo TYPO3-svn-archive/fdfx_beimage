@@ -41,23 +41,25 @@ require_once (PATH_t3lib.'class.t3lib_scbase.php');
 	// DEFAULT initialization of a module [END]
 
 require_once(PATH_t3lib.'class.t3lib_stdgraphic.php');
-require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php'); 
+require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
+require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));
+require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_rotate.php'));
 
 class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 
 	var $imgObj;
 	var $extKey='fdfx_be_image';
-	
+
 	function menuConfig()	{
 		$this->MOD_MENU = Array (
 			'function' => Array (
 				'1' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function1'),
-/*
 				'2' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function2'),
+/*
 				'3' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function3'),
-*/				
+*/
 			)
 		);
 		parent::menuConfig();
@@ -65,22 +67,39 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 
 	function _init()
 	{
-		$this->imgObj=t3lib_div::makeInstance('fdfx_Image_Basic');
-		$this->fileName=t3lib_div::_GP('id');	
+		if ($id=t3lib_div::_GP('id'))
+		{
+			$this->fileName=$id;
+			$array=array(
+				'fileName' => $this->fileName,
+			);
+			$GLOBALS['BE_USER']->setAndSaveSessionData($this->extKey,$array);
+		} else {
+			$array=$GLOBALS['BE_USER']->getSessionData($this->extKey);
+			if (is_array($array))
+			{
+				$this->fileName=$array['fileName'];
+			}
+		}
+	}
+
+	function _initImageObject($class='Crop')
+	{
+		$this->imgObj=t3lib_div::makeInstance('fdfx_Image_'.$class);
 		$this->imgObj->_init($this->extKey,$this->fileName);
 	}
 
 	/**
-	 * Main function of the module. Write the content to 
+	 * Main function of the module. Write the content to
 	 */
 	function main()	{
 		global $BE_USER,$BACK_PATH,$TCA_DESCR,$TCA,$CLIENT,$TYPO3_CONF_VARS;
-		
+
 		$this->_init();
 		// Draw the header.
 		$this->doc = t3lib_div::makeInstance('bigDoc');
 		$this->doc->backPath = $BACK_PATH;
-		$this->doc->form='<form action="" method="POST">';
+
 
 			// JavaScript
 		$this->doc->JScode = '
@@ -93,18 +112,24 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 		';
 		switch((string)$this->MOD_SETTINGS['function'])	{
 			case 1:
-				$this->doc->JScode .=$this->imgObj->_getCropHeader();
+				$this->doc->form='<form action="" method="POST">';
+				$this->_initImageObject('Crop');
+				$this->doc->JScode .=$this->imgObj->_getHeader();
+				break;
+			case 2:
+				$this->_initImageObject('Rotate');
+				$this->doc->JScode .=$this->imgObj->_getHeader();
 				break;
 		}
 		// Creating file management object:
 		$this->basicff = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 		$this->basicff->init($GLOBALS['FILEMOUNTS'],$TYPO3_CONF_VARS['BE']['fileExtensions']);
-		if (@file_exists($this->fileName))	
+		if (@file_exists($this->fileName))
 		{
 			$this->target=$this->basicff->cleanDirectoryName($this->fileName);
-		} 
+		}
 		$key=$this->basicff->checkPathAgainstMounts($this->target.'/');
-		if ($BE_USER->user['admin']  || $key )	
+		if ($BE_USER->user['admin']  || $key )
 		{
 			$this->pageinfo=array('_thePath' => '/');
 
@@ -138,12 +163,13 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 		switch((string)$this->MOD_SETTINGS['function'])	{
 			case 1:
 				$content=$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_text');
-				$content .= $this->imgObj->_getCropContent();
+				$content .= $this->imgObj->_getContent();
 				$this->content.=$this->doc->section($GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_section_header'),$content,0,1);
 			break;
 			case 2:
-				$content='<div align=center><strong>Menu item #2...</strong></div>';
-				$this->content.=$this->doc->section('Message #2:',$content,0,1);
+				$content=$GLOBALS['LANG']->getLL('tx_fdfxbeimage_rotate_text');
+				$content .= $this->imgObj->_getContent();
+				$this->content.=$this->doc->section($GLOBALS['LANG']->getLL('tx_fdfxbeimage_rotate_section_header'),$content,0,1);
 			break;
 			case 3:
 				$content='<div align=center><strong>Menu item #3...</strong></div>';

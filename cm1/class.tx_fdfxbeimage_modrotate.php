@@ -22,7 +22,7 @@
 #   @author: 	Peter Russ <peter.russ@4many.net>
 #   @version:	$Id$
 #
-#   Date:       10.12.2006
+#   Date:       11.12.2006
 #   Filename:   class.tx_fdfxbeimage_modfunc1.php
 #
 #   Project:    fdfx_be_image
@@ -37,16 +37,16 @@ require_once(PATH_t3lib.'class.t3lib_extobjbase.php');
 require_once(PATH_t3lib.'class.t3lib_stdgraphic.php');
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));
+require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_rotate.php'));
 
-class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
+class tx_fdfxbeimage_modrotate extends t3lib_extobjbase
 {
 	var $imgObj;
 	var $extKey='fdfx_be_image';
 
 	function _init()
 	{
-		$this->imgObj=t3lib_div::makeInstance('fdfx_Image_Crop');
+		$this->imgObj=t3lib_div::makeInstance('fdfx_Image_Rotate');
 		$this->fileName=t3lib_div::_GP('file');
 		$this->imgObj->_init($this->extKey,$this->fileName);
 	}
@@ -56,13 +56,13 @@ class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
 	}
 	function head()
 	{
-		$GLOBALS['SOBE']->pageTitle = $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function1');
+		$GLOBALS['SOBE']->pageTitle = $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function2');
 	}
 	function main()	{
 		$this->_init();
 		$this->pObj->doc->JScode .= $this->imgObj->_getHeader();
 
-		$content=$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_text');
+		$content=$GLOBALS['LANG']->getLL('tx_fdfxbeimage_rotate_text');
 		$content .= $this->imgObj->_getContent();
 		return $content;
 	}
