@@ -1,4 +1,8 @@
 (add new changes on top of this file)
+08-06-20 Peter Russ <peter.russ@4many.net>
+1.7.0
+	* added feature to enable default for cropping (as requested by Stig Nørgaard Færch)
+	* SAME_PATH, NEW_PATH and IS_ABSOLUTE is now also configurable by UserTsconfig (requested by Stig Nørgaard Færch)
 07-12-08 Peter Russ <peter.russ@4many.net>
 1.6.0
 	* bugfix of changing crop dimensions on mouse move

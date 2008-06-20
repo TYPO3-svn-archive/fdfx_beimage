@@ -65,10 +65,33 @@ class fdfx_image
 			{
 				$this->conf['MAX_HEIGHT'] = $userConf['properties']['maxHeight'];
 			}
+
+			if (isset ($userConf['properties']['samePath']))
+			{
+				$this->conf['SAME_PATH'] = 1 && $userConf['properties']['samePath'];
+			}
+			if (isset ($userConf['properties']['isAbsolute']))
+			{
+				$this->conf['IS_ABSOLUTE'] = 1 && $userConf['properties']['isAbsolute'];
+			}
+			if (isset ($userConf['properties']['newPath']) && $userConf['properties']['newPath'] !='')
+			{
+				$this->conf['NEW_PATH'] = $userConf['properties']['newPath'];
+			}
+
 			if (isset($userConf['properties']['fixedSize']) && $userConf['properties']['fixedSize']!='')
 			{
 				$this->conf['FIXED_SIZE'] = $userConf['properties']['fixedSize'];
 			}
+			if (isset($userConf['properties']['fixedSizeDefault']) && $userConf['properties']['fixedSizeDefault']!='')
+			{
+				$ar=explode(',',$this->conf['FIXED_SIZE']);
+				if (intval($userConf['properties']['fixedSizeDefault'])<=count($ar) && $userConf['properties']['fixedSizeDefault'])
+				{
+					$this->conf['FIXED_SIZE_DEFAULT'] = $userConf['properties']['fixedSizeDefault'];
+				}
+			}
+
 		}
 	}
 	function _checkMd5($checkArr = array ())

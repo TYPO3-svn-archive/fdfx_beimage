@@ -37,10 +37,12 @@ class fdfx_Image_Crop extends fdfx_Image_Basic
 		$content='';
 		$options='';
 		$optionLines=explode(',',$this->conf['FIXED_SIZE']);
+		$count=1;
 		foreach($optionLines as $line)
 		{
+			$sel=($count++ ==$this->conf['FIXED_SIZE_DEFAULT'])?' selected="selected"':'';
 			list($value,$option)=explode('=',$line);
-			$options .='<option value="'.$value.'">'.$option.'</option>';
+			$options .='<option value="'.$value.'"'.$sel.'>'.$option.'</option>';
 		}
 		$fI = t3lib_div::split_fileref($this->fileName);
 		$fileNameLocal=substr($this->fileName,strlen(PATH_site));
@@ -110,7 +112,6 @@ $content='
 		</select>
 		<input type="button" class="setbutton" onclick="cropScript_setSize(this)" value="'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_setsize').'" />
     </div>
-
 </fieldset>
 <fieldset id="fdfx-be-image-crop-process">
 	<legend>'.$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_legend_process').'</legend>
@@ -132,6 +133,7 @@ $content='
 
 <script type="text/javascript">
 setCHash("'.fdfx_image :: getEncryptionMd5($GLOBALS['TYPO3_CONF_VARS']["SYS"]["encryptionKey"], array('crop',$fileNameLocal)).'");
+autoCrop='.((intval($this->conf['FIXED_SIZE_DEFAULT'])>0)?true:false).';
 init_imageCrop();
 </script>
 ';
