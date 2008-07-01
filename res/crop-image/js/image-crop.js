@@ -358,7 +358,7 @@
 			cropWidthRatio=values[0]/values[1];
 			cropInit=true;
 			cropScript_setCropSizeByInput();
-			cropScript_setCropSizeByInput();
+//			cropScript_setCropSizeByInput();
 		}
 	}
 	/*PRS- 2007 12 8 */

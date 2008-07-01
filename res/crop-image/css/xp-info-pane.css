@@ -1,7 +1,7 @@
 body{width:auto;}
 div.typo3-bigDoc{width:auto;margin:10px;}
 div.crop_content{float:left; border:1px solid grey;background-color:black;margin-top:5px;}
-fieldset{width:150px; height:70px; float:left;}
+fieldset{width:150px; min-height:70px; float:left;}
 * html fieldset{width:170px; height:86px; float:left;padding:5px;}
 fieldset legend{font-weight:bold;}
 fieldset .item{width:75px;float:left;}

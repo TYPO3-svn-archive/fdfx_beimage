@@ -133,7 +133,7 @@ $content='
 
 <script type="text/javascript">
 setCHash("'.fdfx_image :: getEncryptionMd5($GLOBALS['TYPO3_CONF_VARS']["SYS"]["encryptionKey"], array('crop',$fileNameLocal)).'");
-autoCrop='.((intval($this->conf['FIXED_SIZE_DEFAULT'])>0)?true:false).';
+autoCrop='.((intval($this->conf['FIXED_SIZE_DEFAULT'])>0)?1:0).';
 init_imageCrop();
 </script>
 ';

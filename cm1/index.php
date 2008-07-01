@@ -34,8 +34,8 @@ unset($MCONF);
 require ('conf.php');
 require ($BACK_PATH.'init.php');
 require ($BACK_PATH.'template.php');
-$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.php');
-#include ('locallang.php');
+$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
+#include ('locallang.xml');
 require_once (PATH_t3lib.'class.t3lib_scbase.php');
 	// ....(But no access check here...)
 	// DEFAULT initialization of a module [END]
@@ -133,7 +133,7 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 		{
 			$this->pageinfo=array('_thePath' => '/');
 
-			$headerSection = $this->doc->getHeader('pages',$this->pageinfo,$this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_core.php:labels.path').': '.t3lib_div::fixed_lgd_pre($this->pageinfo['_thePath'],50);
+			$headerSection = $this->doc->getHeader('pages',$this->pageinfo,$this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_core.xml:labels.path').': '.t3lib_div::fixed_lgd_pre($this->pageinfo['_thePath'],50);
 
 			$this->content.=$this->doc->startPage($GLOBALS['LANG']->getLL('tx_fdfxbeimage_title'));
 			$this->content.=$this->doc->header($GLOBALS['LANG']->getLL('tx_fdfxbeimage_title'));
