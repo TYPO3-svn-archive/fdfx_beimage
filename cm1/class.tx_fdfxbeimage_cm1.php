@@ -69,8 +69,7 @@ class tx_fdfxbeimage_cm1
 	 */
 	function includeLL()
 	{
-		include (t3lib_extMgm :: extPath('fdfx_be_image').'locallang.xml');
-		return $LOCAL_LANG;
+		return $GLOBALS['LANG']->includeLLFile('EXT:fdfx_be_image/locallang.xml',FALSE);
 	}
 }
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_cm1.php'])
