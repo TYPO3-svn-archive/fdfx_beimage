@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description></description>
+        <type></type>
+        <csh_table></csh_table>
+        <labelContext type="array">
+        </labelContext>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="tx_fdfxbeimage_title">FXImage</label>
+            <label index="tx_fdfxbeimage_function1">Crop Image</label>
+            <label index="tx_fdfxbeimage_function2">Rotate Image</label>
+            <label index="tx_fdfxbeimage_function3">T.B.D</label>
+            <label index="tx_fdfxbeimage_crop_text">To select crop area, drag and move the dotted rectangle or type in values directly into the form.</label>
+            <label index="tx_fdfxbeimage_crop_section_header">Image crop</label>
+            <label index="tx_fdfxbeimage_crop_legend_offset">Crop-Offset</label>
+            <label index="tx_fdfxbeimage_crop_legend_dimension">Crop-Dimension</label>
+            <label index="tx_fdfxbeimage_crop_legend_output">Crop-Output</label>
+            <label index="tx_fdfxbeimage_crop_legend_process">Crop-Process</label>
+            <label index="tx_fdfxbeimage_crop_label_x">Offset X:</label>
+            <label index="tx_fdfxbeimage_crop_label_y">Offset Y:</label>
+            <label index="tx_fdfxbeimage_crop_label_width">Width:</label>
+            <label index="tx_fdfxbeimage_crop_label_height">Height:</label>
+            <label index="tx_fdfxbeimage_crop_label_percent">Percent:</label>
+            <label index="tx_fdfxbeimage_crop_label_convert">Convert to:</label>
+            <label index="tx_fdfxbeimage_crop_label_fixedsize">Fixed Size:</label>
+            <label index="tx_fdfxbeimage_crop_label_preview">Preview:</label>
+            <label index="tx_fdfxbeimage_crop_label_ratio">Keep Ratio:</label>
+            <label index="tx_fdfxbeimage_crop_label_lock">Lock:</label>
+            <label index="tx_fdfxbeimage_crop_label_store">Store:</label>
+            <label index="tx_fdfxbeimage_crop_submit">Crop it!</label>
+            <label index="tx_fdfxbeimage_crop_setsize">+</label>
+            <label index="tx_fdfxbeimage_rotate_text">Click on the desired action. After you got the result of your choice save the image.</label>
+            <label index="tx_fdfxbeimage_rotate_section_header">Rotate Image</label>
+            <label index="tx_fdfxbeimage_rotate_modes">Rotate</label>
+            <label index="tx_fdfxbeimage_rotate_ccw">90&amp;deg;CCW</label>
+            <label index="tx_fdfxbeimage_rotate_cw">90&amp;deg;CW</label>
+            <label index="tx_fdfxbeimage_rotate_reset">Reset</label>
+            <label index="tx_fdfxbeimage_rotate_save">Save</label>
+            <label index="tx_fdfxbeimage_error">ERROR: </label>
+            <label index="tx_fdfxbeimage_warningLostChanges">All unsaved changes made to the image will lost, are you sure you wish to continue?</label>
+            <label index="tx_fdfxbeimage_warningReset">All unsaved changes made to the image will be lost, are you sure you wish to continue?</label>
+            <label index="tx_fdfxbeimage_warningResetEmpty">No changes has been made to the image so far!</label>
+            <label index="tx_fdfxbeimage_warningEditorClose">Are you sure to close the window?</label>
+            <label index="tx_fdfxbeimage_warningUndoImage">Are you sure to restore the image to previous state?</label>
+            <label index="tx_fdfxbeimage_warningFlipHorizotal">Are you sure to flip the image horizotally?</label>
+            <label index="tx_fdfxbeimage_warningFlipVertical">Are you sure to flip the image vertically?</label>
+            <label index="tx_fdfxbeimage_noChangeMadeBeforeSave">You have not made any changes to the images.</label>
+            <label index="tx_fdfxbeimage_imageSaved">The new image saved as </label>
+            <label index="tx_fdfxbeimage_error_no_image_info">No ImageInfo!</label>
+            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Path %1 should be absolute but can not be accessed by TYPO3</label>
+            <label index="tx_fdfxbeimage_error_relative_folder_creation">Can not create relative folder %1 in path %2</label>
+            <label index="tx_fdfxbeimage_success_image_saved">Image saved to %1</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="tx_fdfxbeimage_title">FXImage</label>
+            <label index="tx_fdfxbeimage_function1">Bild beschneiden</label>
+            <label index="tx_fdfxbeimage_function2">Bild drehen</label>
+            <label index="tx_fdfxbeimage_function3">T.B.D</label>
+            <label index="tx_fdfxbeimage_crop_text">Um Bereich für Zuschnitt auszuwählen, ziehen sie mit den Rechtecken die punktierte Linen an die gewünschte Position oder geben Sie die Werte direkt in die Felder ein.</label>
+            <label index="tx_fdfxbeimage_crop_section_header">Bild beschneiden</label>
+            <label index="tx_fdfxbeimage_crop_legend_offset">Offset</label>
+            <label index="tx_fdfxbeimage_crop_legend_dimension">Maße</label>
+            <label index="tx_fdfxbeimage_crop_legend_output">Ausgabe</label>
+            <label index="tx_fdfxbeimage_crop_legend_process">Verarbeitung</label>
+            <label index="tx_fdfxbeimage_crop_label_x">Offset X:</label>
+            <label index="tx_fdfxbeimage_crop_label_y">Offset Y:</label>
+            <label index="tx_fdfxbeimage_crop_label_width">Breite:</label>
+            <label index="tx_fdfxbeimage_crop_label_height">Höhe:</label>
+            <label index="tx_fdfxbeimage_crop_label_percent">Faktor in %:</label>
+            <label index="tx_fdfxbeimage_crop_label_fixedsize">Feste Größe:</label>
+            <label index="tx_fdfxbeimage_crop_label_convert">Umwandeln in:</label>
+            <label index="tx_fdfxbeimage_crop_label_preview">Vorschau:</label>
+            <label index="tx_fdfxbeimage_crop_label_store">Speichern:</label>
+            <label index="tx_fdfxbeimage_crop_submit">zuschneiden</label>
+            <label index="tx_fdfxbeimage_rotate_text">Klicken Sie auf erforderliche Aktion. Entspricht das Resultat Ihren Vorstellungen, speichern Sie das Ergebnis.</label>
+            <label index="tx_fdfxbeimage_rotate_section_header">Bild drehen</label>
+            <label index="tx_fdfxbeimage_rotate_ccw">90&amp;deg;L</label>
+            <label index="tx_fdfxbeimage_rotate_cw">90&amp;deg;R</label>
+            <label index="tx_fdfxbeimage_rotate_reset">Reset</label>
+            <label index="tx_fdfxbeimage_rotate_save">Speichern</label>
+            <label index="tx_fdfxbeimage_error">Fehler: </label>
+            <label index="tx_fdfxbeimage_error_no_image_info">Keine Bildinformation verfügbar</label>
+            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Absoluter Pfad %1 kann von TYPO3 nicht geöffnet werden!</label>
+            <label index="tx_fdfxbeimage_error_relative_folder_creation">Kann kein Verzeichnis %1 im Pfad %2 anlegen!</label>
+            <label index="tx_fdfxbeimage_success_image_saved">Bild gespeichert unter %1</label>
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+        </languageKey>
+        <languageKey index="es" type="array">
+        </languageKey>
+        <languageKey index="nl" type="array">
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+    </data>
+    <orig_hash type="array">
+        <languageKey index="default" type="array">
+            <label index="tx_fdfxbeimage_title" type="integer">119173286</label>
+            <label index="tx_fdfxbeimage_function1" type="integer">1634105</label>
+            <label index="tx_fdfxbeimage_function2" type="integer">205246210</label>
+            <label index="tx_fdfxbeimage_function3" type="integer">205246210</label>
+            <label index="tx_fdfxbeimage_crop_text" type="integer">113554793</label>
+            <label index="tx_fdfxbeimage_crop_section_header" type="integer">164322682</label>
+            <label index="tx_fdfxbeimage_crop_legend_offset" type="integer">118244307</label>
+            <label index="tx_fdfxbeimage_crop_legend_dimension" type="integer">17314796</label>
+            <label index="tx_fdfxbeimage_crop_legend_output" type="integer">96620525</label>
+            <label index="tx_fdfxbeimage_crop_legend_process" type="integer">255473273</label>
+            <label index="tx_fdfxbeimage_crop_label_x" type="integer">51916868</label>
+            <label index="tx_fdfxbeimage_crop_label_y" type="integer">221986087</label>
+            <label index="tx_fdfxbeimage_crop_label_width" type="integer">76336968</label>
+            <label index="tx_fdfxbeimage_crop_label_height" type="integer">244530626</label>
+            <label index="tx_fdfxbeimage_crop_label_percent" type="integer">184131659</label>
+            <label index="tx_fdfxbeimage_crop_label_convert" type="integer">138336992</label>
+            <label index="tx_fdfxbeimage_crop_label_fixedsize" type="integer">187106842</label>
+            <label index="tx_fdfxbeimage_crop_label_preview" type="integer">61776935</label>
+            <label index="tx_fdfxbeimage_crop_label_ratio" type="integer">70840080</label>
+            <label index="tx_fdfxbeimage_crop_label_lock" type="integer">67103039</label>
+            <label index="tx_fdfxbeimage_crop_label_store" type="integer">169699674</label>
+            <label index="tx_fdfxbeimage_crop_submit" type="integer">54425626</label>
+            <label index="tx_fdfxbeimage_error" type="integer">55316010</label>
+            <label index="tx_fdfxbeimage_error_no_image_info" type="integer">85603538</label>
+            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable" type="integer">195419241</label>
+            <label index="tx_fdfxbeimage_error_relative_folder_creation" type="integer">11173240</label>
+            <label index="tx_fdfxbeimage_success_image_saved" type="integer">66715776</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="tx_fdfxbeimage_title" type="integer">119173286</label>
+            <label index="tx_fdfxbeimage_function1" type="integer">1634105</label>
+            <label index="tx_fdfxbeimage_function2" type="integer">205246210</label>
+            <label index="tx_fdfxbeimage_function3" type="integer">205246210</label>
+            <label index="tx_fdfxbeimage_crop_text" type="integer">113554793</label>
+            <label index="tx_fdfxbeimage_crop_section_header" type="integer">164322682</label>
+            <label index="tx_fdfxbeimage_crop_legend_offset" type="integer">118244307</label>
+            <label index="tx_fdfxbeimage_crop_legend_dimension" type="integer">17314796</label>
+            <label index="tx_fdfxbeimage_crop_legend_output" type="integer">96620525</label>
+            <label index="tx_fdfxbeimage_crop_legend_process" type="integer">255473273</label>
+            <label index="tx_fdfxbeimage_crop_label_x" type="integer">51916868</label>
+            <label index="tx_fdfxbeimage_crop_label_y" type="integer">221986087</label>
+            <label index="tx_fdfxbeimage_crop_label_width" type="integer">76336968</label>
+            <label index="tx_fdfxbeimage_crop_label_height" type="integer">244530626</label>
+            <label index="tx_fdfxbeimage_crop_label_percent" type="integer">184131659</label>
+            <label index="tx_fdfxbeimage_crop_label_fixedsize" type="integer">187106842</label>
+            <label index="tx_fdfxbeimage_crop_label_convert" type="integer">138336992</label>
+            <label index="tx_fdfxbeimage_crop_label_preview" type="integer">61776935</label>
+            <label index="tx_fdfxbeimage_crop_label_store" type="integer">169699674</label>
+            <label index="tx_fdfxbeimage_crop_submit" type="integer">54425626</label>
+            <label index="tx_fdfxbeimage_error" type="integer">55316010</label>
+            <label index="tx_fdfxbeimage_error_no_image_info" type="integer">85603538</label>
+            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable" type="integer">195419241</label>
+            <label index="tx_fdfxbeimage_error_relative_folder_creation" type="integer">11173240</label>
+            <label index="tx_fdfxbeimage_success_image_saved" type="integer">66715776</label>
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+        </languageKey>
+        <languageKey index="es" type="array">
+        </languageKey>
+        <languageKey index="nl" type="array">
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+    </orig_hash>
+    <orig_text type="array">
+        <languageKey index="default" type="array">
+        </languageKey>
+        <languageKey index="dk" type="array">
+        </languageKey>
+        <languageKey index="de" type="array">
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+        </languageKey>
+        <languageKey index="es" type="array">
+        </languageKey>
+        <languageKey index="nl" type="array">
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+    </orig_text>
+</T3locallang>
