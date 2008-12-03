@@ -1,0 +1,32 @@
+	#imageContainer{
+
+		margin:15px;
+		left:0px;
+		top:0px;
+		position:relative;
+	}
+
+	input.textInput{
+		width:50px;
+		text-align:right;
+	}
+	form{
+		margin:0px;
+	}
+
+	.progressBar_square{
+		border:1px solid #000;
+		margin:1px;
+		float:left;
+		width:10px;
+		height:14px;
+		margin-top:2px;
+		background-color:#7190E0;
+	}
+
+	#pageContent{
+		width:auto;
+	}
+	#hiddenImage{
+		display:none;
+	}
