@@ -83,7 +83,6 @@ class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 	 */
 	function isValid ($type, $itemInfo=NULL, $env=NULL) {
 		$valid = $this->isTypeValid ($type, $itemInfo, $env);
-
 		if ($valid) {
 			$valid = ($this->itemInfo['__type'] == 'file' AND t3lib_div::inList($GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], $this->itemInfo['file_type']));
 		}

@@ -151,7 +151,7 @@ class fdfx_image
 		$fileProcessor->init_actionPerms($BE_USER->user['fileoper_perms']);
 		return $fileProcessor;
 	}
-	function _storeImage($fileNamePrefix='',$dir,$imgInfo=array(),$basicFF=null)
+	function _storeImage($fileNamePrefix='',$dir,$imgInfo=array(),&$basicFF=null)
 	{
 		if ($basicFF==null)
 		{
@@ -164,7 +164,7 @@ class fdfx_image
 		$imgInfo[3] = substr($newFilePath,strlen(PATH_site));
 		return $imgInfo;
 	}
-	function _getDirname($file='',$extFF=null)
+	function _getDirname($file='',&$extFF=null)
 	{
 		$dirname=false;
 		if ($extFF==null)
@@ -229,11 +229,11 @@ class fdfx_image
 				$convertParamAdd = " -rotate ".$angle;
 				$imgInfoNew = $imgObj->imageMagickConvert($file,'','','',$convertParamAdd,'','',1);
 				$extFF=$this->_initExtFileFunc();
-				$dirName=$this->_getDirname($file,&$extFF);
+				$dirName=$this->_getDirname($file,$extFF);
 				if ($dirName)
 				{
 					// saved
-					$imgInfoNew=$this->_storeImage('rotate.'.$angle.'.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,&$extFF);
+					$imgInfoNew=$this->_storeImage('rotate.'.$angle.'.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,$extFF);
 					if ($imgInfoNew[0]>$this->conf['MAX_WIDTH'] || $imgInfoNew[1]>$this->conf['MAX_HEIGHT'])
 					{
 						//we scale the image to display it in BE
@@ -313,10 +313,10 @@ class fdfx_image
 					$this->content .="var w = window.open('".$imgInfoNew[3]."','imageWin','width=". ($imgInfoNew[0] +30).",height=". ($imgInfoNew[1] +30).",resizable=yes');";
 				} elseif ($this->store) {
 					$extFF=$this->_initExtFileFunc();
-					$dirName=$this->_getDirname($file,&$extFF);
+					$dirName=$this->_getDirname($file,$extFF);
 					if ($dirName)
 					{
-						$saveImgInfo=$this->_storeImage('crop.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,&$extFF);
+						$saveImgInfo=$this->_storeImage('crop.'.$imgObj->filenamePrefix,$dirName,$imgInfoNew,$extFF);
 //						$this->content .= "alert('Image saved to ".$saveImgInfo[3]."')";
 						$this->content .= "alert('".$this->getMsg('success_image_saved',array($saveImgInfo[3]))."');";
 					}

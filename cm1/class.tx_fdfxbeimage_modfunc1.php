@@ -52,7 +52,16 @@ class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
 	}
 	function accessCheck()
 	{
-		return tx_dam::access_checkAction('editFile');
+		$dam = new tx_dam();
+		if (method_exists($dam,'access_checkAction'))
+		{
+			return tx_dam::access_checkAction('editFile');
+		} elseif (method_exists($dam,'checkFileOperation'))
+		{
+			return tx_dam::access_checkFileOperation('editFile');
+		} else {
+			die (__FILE__.':'.__LINE__.'Problem with DAM ');
+		}
 	}
 	function head()
 	{
