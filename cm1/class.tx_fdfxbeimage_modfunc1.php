@@ -52,7 +52,20 @@ class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
 	}
 	function accessCheck()
 	{
-		return tx_dam::access_checkAction('editFile');
+		$dam = new tx_dam();
+		if (method_exists($dam,'access_checkAction'))
+		{
+			return tx_dam::access_checkAction('editFile');
+		} elseif (method_exists($dam,'checkFileOperation'))
+		{
+			return tx_dam::access_checkFileOperation('editFile');
+		} elseif (method_exists($dam,'access_checkFileOperation'))
+ 		{
+ 			return tx_dam::access_checkFileOperation('editFile');
+
+		} else {
+			die (__FILE__.':'.__LINE__.'Problem with DAM ');
+		}
 	}
 	function head()
 	{
@@ -64,6 +77,13 @@ class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
 
 		$content=$GLOBALS['LANG']->getLL('tx_fdfxbeimage_crop_text');
 		$content .= $this->imgObj->_getContent();
+		if ($this->imgObj->docHeaderButtons)
+		{
+			$this->pObj->docHeaderButtons['SAVE'] = '';
+			$this->pObj->docHeaderButtons['CLOSE'] = '<a href="#" onclick="jumpBack(); return false;"><img' . t3lib_iconWorks::skinImg($this->pObj->doc->backPath, 'gfx/closedok.gif') . ' class="c-inputButton" title="'.$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_core.xml:labels.cancel',1).'" alt="" height="16" width="16"></a>';
+			$this->pObj->markers['FOLDER_INFO'] = substr($this->fileName,strlen(PATH_site));
+			$this->pObj->markers['CSH'] = '';
+		}
 		return $content;
 	}
 }

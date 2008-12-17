@@ -10,7 +10,8 @@ if (TYPO3_MODE == "BE")
 			'txdamM1_cmd',
 			'tx_fdfxbeimage_modfunc1',
 			t3lib_extMgm::extPath($_EXTKEY).'cm1/class.tx_fdfxbeimage_modfunc1.php',
-			t3lib_extMgm::extPath($_EXTKEY).'cm1/locallang.xml:tx_fdfxbeimage_function1'
+//			t3lib_extMgm::extPath($_EXTKEY).'cm1/locallang.xml:tx_fdfxbeimage_function1'
+			'LLL:EXT:fdfx_be_image/cm1/locallang.xml:tx_fdfxbeimage_function1'
 		);
 		t3lib_extMgm::insertModuleFunction(
 			'txdamM1_cmd',
@@ -19,11 +20,13 @@ if (TYPO3_MODE == "BE")
 			t3lib_extMgm::extPath($_EXTKEY).'cm1/locallang.xml:tx_fdfxbeimage_function2'
 		);
 		tx_dam::register_action ('tx_fdfxbeimage_rotateFile',
-			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_rotateFile.php:&tx_fdfxbeimage_rotateFile',
-			'after:tx_dam_action_viewFile');
+			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_rotateFile.php:&tx_fdfxbeimage_rotateFile'
+			,'top'
+			);
 		tx_dam::register_action ('tx_fdfxbeimage_cropFile',
-			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_cropFile.php:&tx_fdfxbeimage_cropFile',
-			'after:tx_dam_action_viewFile');
+			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_cropFile.php:&tx_fdfxbeimage_cropFile'
+			,'top'
+			);
 	}
 	else
 	{

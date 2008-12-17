@@ -61,18 +61,18 @@
             <label index="tx_fdfxbeimage_function1">Bild beschneiden</label>
             <label index="tx_fdfxbeimage_function2">Bild drehen</label>
             <label index="tx_fdfxbeimage_function3">T.B.D</label>
-            <label index="tx_fdfxbeimage_crop_text">Um Bereich fÃ¼r Zuschnitt auszuwÃ¤hlen, ziehen sie mit den Rechtecken die punktierte Linen an die gewÃ¼nschte Position oder geben Sie die Werte direkt in die Felder ein.</label>
+            <label index="tx_fdfxbeimage_crop_text">Um Bereich für Zuschnitt auszuwählen, ziehen sie mit den Rechtecken die punktierte Linen an die gewünschte Position oder geben Sie die Werte direkt in die Felder ein.</label>
             <label index="tx_fdfxbeimage_crop_section_header">Bild beschneiden</label>
             <label index="tx_fdfxbeimage_crop_legend_offset">Offset</label>
-            <label index="tx_fdfxbeimage_crop_legend_dimension">MaÃ?e</label>
+            <label index="tx_fdfxbeimage_crop_legend_dimension">Maße</label>
             <label index="tx_fdfxbeimage_crop_legend_output">Ausgabe</label>
             <label index="tx_fdfxbeimage_crop_legend_process">Verarbeitung</label>
             <label index="tx_fdfxbeimage_crop_label_x">Offset X:</label>
             <label index="tx_fdfxbeimage_crop_label_y">Offset Y:</label>
             <label index="tx_fdfxbeimage_crop_label_width">Breite:</label>
-            <label index="tx_fdfxbeimage_crop_label_height">HÃ¶he:</label>
+            <label index="tx_fdfxbeimage_crop_label_height">Höhe:</label>
             <label index="tx_fdfxbeimage_crop_label_percent">Faktor in %:</label>
-            <label index="tx_fdfxbeimage_crop_label_fixedsize">Feste GrÃ¶Ã?e:</label>
+            <label index="tx_fdfxbeimage_crop_label_fixedsize">Feste Größe:</label>
             <label index="tx_fdfxbeimage_crop_label_convert">Umwandeln in:</label>
             <label index="tx_fdfxbeimage_crop_label_preview">Vorschau:</label>
             <label index="tx_fdfxbeimage_crop_label_store">Speichern:</label>
@@ -84,8 +84,8 @@
             <label index="tx_fdfxbeimage_rotate_reset">Reset</label>
             <label index="tx_fdfxbeimage_rotate_save">Speichern</label>
             <label index="tx_fdfxbeimage_error">Fehler: </label>
-            <label index="tx_fdfxbeimage_error_no_image_info">Keine Bildinformation verfÃ¼gbar</label>
-            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Absoluter Pfad %1 kann von TYPO3 nicht geï¿½ffnet werden!</label>
+            <label index="tx_fdfxbeimage_error_no_image_info">Keine Bildinformation verfügbar</label>
+            <label index="tx_fdfxbeimage_error_absolute_path_notaccessable">Absoluter Pfad %1 kann von TYPO3 nicht geöffnet werden!</label>
             <label index="tx_fdfxbeimage_error_relative_folder_creation">Kann kein Verzeichnis %1 im Pfad %2 anlegen!</label>
             <label index="tx_fdfxbeimage_success_image_saved">Bild gespeichert unter %1</label>
         </languageKey>

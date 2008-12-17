@@ -72,6 +72,9 @@
 	var preserveAspectRatio = false;
 
 	var cropWidthRatio = false;	// width of cropping area relative to height
+	/*PRS+ 2008 6 20 */
+	var autoCrop=false; // will display crop frame automatically
+	/*PRS- 2008 6 20 */
 	function crop_createDivElements()
 	{
 
@@ -355,7 +358,7 @@
 			cropWidthRatio=values[0]/values[1];
 			cropInit=true;
 			cropScript_setCropSizeByInput();
-			cropScript_setCropSizeByInput();
+//			cropScript_setCropSizeByInput();
 		}
 	}
 	/*PRS- 2007 12 8 */
@@ -766,5 +769,8 @@
 		crop_createDivElements();
 		crop_progressBar();
 		cropScript_updateFormValues();
-
+		if (autoCrop)
+		{
+			cropScript_setSize(null);
+		}
 	}
