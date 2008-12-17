@@ -35,6 +35,7 @@ class fdfx_Image_Basic
 	var $conf = array ();
 	var $extKey='';
 	var $returnUrl='';
+	var $docHeaderButtons=false;// for TYPO3 > v. 4.2
 	function _init($extKey='fdfx_be_image',$fName='')
 	{
 		$this->extKey=$extKey;
@@ -63,17 +64,20 @@ class fdfx_Image_Basic
 	}
 	function btn_back($params=array(), $absUrl='')	{
 		global $LANG, $BACK_PATH;
-
-		if ($absUrl) {
-			$url = t3lib_extMgm :: isLoaded('dam')?$absUrl:"javascript:top.goToModule('file_list');";
+		if (t3lib_div::compat_version('4.2') && t3lib_extMgm :: isLoaded('dam'))
+		{
+			$this->docHeaderButtons =true;
 		} else {
-			$url = "javascript:top.goToModule('file_list');";
-		}
+			if ($absUrl) {
+				$url = t3lib_extMgm :: isLoaded('dam')?$absUrl:"javascript:top.goToModule('file_list');";
+			} else {
+				$url = "javascript:top.goToModule('file_list');";
+			}
 
-		$content = '<a href="'.htmlspecialchars($url).'" class="typo3-goBack">'.
+			$content = '<a href="'.htmlspecialchars($url).'" class="typo3-goBack">'.
 					'<img'.t3lib_iconWorks::skinImg($BACK_PATH,'gfx/goback.gif"', 'width="14" height="14"').' class="absmiddle" alt="" /> '.$LANG->sL('LLL:EXT:lang/locallang_core.xml:labels.goBack',1).
 					'</a>';
-
+		}
 		return $content;
 	}
 

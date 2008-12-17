@@ -102,11 +102,11 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 		global $BACK_PATH;
 
 		if ($this->disabled) {
-			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_i.gif';
+			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.i.png';
 		} else {
-			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon-rotate.gif';
+			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.png';
 		}
-		$icon = '<img src="'.$iconFile.'" width="12px" height="12px"'.$this->_cleanAttribute($addAttribute).' alt=""/>';
+		$icon = '<img src="'.$iconFile.'" width="16px" height="16px"'.$this->_cleanAttribute($addAttribute).'alt="'. $this->getDescription(). '" />';
 
 		return $icon;
 	}
@@ -118,7 +118,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @return	string
 	 */
 	function getDescription () {
-		return $GLOBALS['LANG']->sL('LLL:EXT:fdfx_be_image/cm1/locallang.xml:function2');
+		return $GLOBALS['LANG']->sL('LLL:EXT:fdfx_be_image/cm1/locallang.xml:tx_fdfxbeimage_function2');
 	}
 
 
