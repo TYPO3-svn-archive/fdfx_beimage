@@ -77,7 +77,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @return	boolean
 	 */
 	public function isValid ($type, $itemInfo=NULL, $env=NULL) {
-		$valid = $this->isTypeValid ($type, $itemInfo, $env);
+		$valid = $this->isTypeValid ($type, $itemInfo, $env) && self::isEnabled();
 
 		if ($valid) {
 			$valid = ($this->itemInfo['__type'] == 'file' AND t3lib_div::inList($GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], $this->itemInfo['file_type']));
@@ -85,6 +85,21 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 		return $valid;
 	}
 
+	/**
+	 * Checks if rotation is enabled by User/Group TSConfig
+	 * @return boolean
+	 */
+	static protected function isEnabled() {
+		static $userConf = null;
+		if (is_null ($userConf)) {
+			$userConf = $GLOBALS ['BE_USER']->getTSConfig ( strtoupper ( 'fdfx_be_image' ) );
+		}
+		$isEnabled = true;
+		if (isset($userConf['properties']) && isset($userConf['properties']['disableRotation'])) {
+			$isEnabled = $userConf['properties']['disableRotation'] == false;
+		}
+		return $isEnabled;
+	}
 
 	/**
 	 * Returns the icon image tag.
@@ -95,13 +110,17 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 */
 	public function getIcon ($addAttribute='') {
 		global $BACK_PATH;
-
-		if ($this->disabled) {
-			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.i.png';
-		} else {
-			$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.png';
+		
+		$icon = '';
+		
+		if (self::isEnabled()) {
+			if ($this->disabled) {
+				$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.i.png';
+			} else {
+				$iconFile = $BACK_PATH.t3lib_extMgm::extRelPath('fdfx_be_image').'res/cm_icon_rotate.png';
+			}
+			$icon = '<img src="'.$iconFile.'" width="16px" height="16px"'.$this->_cleanAttribute($addAttribute).'alt="'. $this->getDescription(). '" />';
 		}
-		$icon = '<img src="'.$iconFile.'" width="16px" height="16px"'.$this->_cleanAttribute($addAttribute).'alt="'. $this->getDescription(). '" />';
 
 		return $icon;
 	}

@@ -42,10 +42,30 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 	protected $extKey = 'fdfx_be_image';
 	
 	public function menuConfig() {
-		$this->MOD_MENU = Array ('function' => Array ('1' => $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function1' ), '2' => $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function2' ) ) );
+		$this->MOD_MENU = Array (
+			'function' => Array (
+				'1' => $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function1' ), 
+				'2' => $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function2' ) 
+				) 
+			);
+		if (self::isRotationDisabled()) {
+			unset($this->MOD_MENU['function']['2']);
+		}
 		parent::menuConfig ();
 	}
 	
+	static protected function isRotationDisabled() {
+		static $userConf = null;
+		if (is_null ($userConf)) {
+			$userConf = $GLOBALS ['BE_USER']->getTSConfig ( strtoupper ( 'fdfx_be_image' ) );
+		}
+		$isDisabled = false;
+		if (isset($userConf['properties']) && isset($userConf['properties']['disableRotation'])) {
+			$isDisabled = $userConf['properties']['disableRotation'] == true;
+		}
+		return $isDisabled;
+	}
+		
 	protected function _init() {
 		if ($id = t3lib_div::_GP ( 'id' )) {
 			$this->fileName = $id;
@@ -84,12 +104,12 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 			</script>
 		';
 		switch (( string ) $this->MOD_SETTINGS ['function']) {
-			case 1 :
+			case '1' :
 				$this->doc->form = '<form action="" method="POST">';
 				$this->_initImageObject ( 'Crop' );
 				$this->doc->JScode .= $this->imgObj->_getHeader ();
 				break;
-			case 2 :
+			case '2' :
 				$this->_initImageObject ( 'Rotate' );
 				$this->doc->JScode .= $this->imgObj->_getHeader ();
 				break;
