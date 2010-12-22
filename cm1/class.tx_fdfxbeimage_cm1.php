@@ -19,8 +19,7 @@
 *  GNU General Public License for more details.
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
-/**
+*  
  * Addition of an item to the clickmenu
  *
  * @author	Peter Russ <peter.russ@uon.li>
