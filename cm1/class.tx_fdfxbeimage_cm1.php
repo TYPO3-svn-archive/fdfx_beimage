@@ -23,7 +23,7 @@
  * Addition of an item to the clickmenu
  *
  * @author	Peter Russ <peter.russ@uon.li>
- * @version $Id$
+ * @version $Rev$
  */
 class tx_fdfxbeimage_cm1
 {
