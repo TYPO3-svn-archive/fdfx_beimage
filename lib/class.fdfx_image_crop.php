@@ -19,7 +19,7 @@
 #    http://www.mozilla.org/MPL/MPL-1.1.html
 #
 # 	Copyright (c) 2007 by 4Many Services
-#   @author: 	Peter Russ <peter.russ@4many.net>
+#   @author: 	Peter Russ <peter.russ@uon.li>
 #   @version:	$Id$
 #
 #   Date:       09.12.2007

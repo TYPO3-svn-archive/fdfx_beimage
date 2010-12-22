@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c)  2006 Peter Russ (peter.russ@4many.net)  All rights reserved
+*  (c)  2006 Peter Russ (peter.russ@uon.li)  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 /**
  * Addition of an item to the clickmenu
  *
- * @author	Peter Russ <peter.russ@4many.net>
+ * @author	Peter Russ <peter.russ@uon.li>
  * @version $Id$
  */
 class tx_fdfxbeimage_cm1

@@ -18,8 +18,8 @@
 #    An on-line copy of the MPL Mozilla Public License can be found
 #    http://www.mozilla.org/MPL/MPL-1.1.html
 #
-# 	Copyright (c) 2006 by 4Many Services
-#   @author: 	Peter Russ <peter.russ@4many.net>
+# 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
+#   @author: 	Peter Russ <peter.russ@uon.li>
 #   @version:	$Id$
 #
 #   Date:       11.12.2006

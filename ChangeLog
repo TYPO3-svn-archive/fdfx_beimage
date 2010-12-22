@@ -1,5 +1,8 @@
-(add new changes on top of this file)
-08-12-17 Peter Russ <peter,russ@4many.net>
+10-12-20 Peter Russ <peter.russ@uon.li>
+2.0.0
+	* added autoloader
+
+08-12-17 Peter Russ <peter.russ@4many.net>
 1.8.0
 	* changes required for DAM 1.1.0
 	* some basic template support for TYPO3 v 4.2 & DAM

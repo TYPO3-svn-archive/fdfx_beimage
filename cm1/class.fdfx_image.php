@@ -19,7 +19,7 @@
 *
 * 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
 *   @author: 		Peter Russ <peter.russ@uon.li>
-*   @version:		$Rev$
+*   @version:		$Id$
 *   @package:		TYPO3
 *   @subpackage:	fdfx_be_image
 *   

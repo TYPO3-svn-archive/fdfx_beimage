@@ -25,7 +25,7 @@
  * Part of the DAM (digital asset management) extension.
  *
  * @author	Rene Fritz <r.fritz@colorcube.de>
- * @author	Peter Russ <peter russ@4many.net>
+ * @author	Peter Russ <peter russ@uon.li>
  * @version: 	$Id$
  * Date:        09.12.2006
  * @package fdfx_be_image
@@ -33,13 +33,10 @@
 
 
 
-require_once (PATH_txdam.'lib/class.tx_dam_actionbase.php');
-
-
 /**
  * Image File action
  *
- * @author	Peter Russ<peter.russ@4many.net>
+ * @author	Peter Russ<peter.russ@uon.li>
  * @package fdfx_be_image
  * @see tx_dam_actionbase
  */
@@ -146,8 +143,8 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_rotateFile.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_rotateFile.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/lib/action/class.tx_fdfxbeimage_rotateFile.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/lib/action/class.tx_fdfxbeimage_rotateFile.php']);
 }
 
 ?>

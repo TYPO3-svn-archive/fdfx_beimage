@@ -20,11 +20,11 @@ if (TYPO3_MODE == "BE")
 			t3lib_extMgm::extPath($_EXTKEY).'cm1/locallang.xml:tx_fdfxbeimage_function2'
 		);
 		tx_dam::register_action ('tx_fdfxbeimage_rotateFile',
-			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_rotateFile.php:&tx_fdfxbeimage_rotateFile'
+			t3lib_extMgm::extPath($_EXTKEY).'lib/action/class.tx_fdfxbeimage_rotateFile.php:&tx_fdfxbeimage_rotateFile'
 			,'top'
 			);
 		tx_dam::register_action ('tx_fdfxbeimage_cropFile',
-			t3lib_extMgm::extPath($_EXTKEY).'class.tx_fdfxbeimage_cropFile.php:&tx_fdfxbeimage_cropFile'
+			t3lib_extMgm::extPath($_EXTKEY).'lib/action/class.tx_fdfxbeimage_cropFile.php:&tx_fdfxbeimage_cropFile'
 			,'top'
 			);
 	}

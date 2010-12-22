@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005 Peter Russ (peter.russ@4many.net)
+*  (c) 2005 Peter Russ (peter.russ@uon.li)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,7 +24,7 @@
 /**
  * fdfx_be_image module cm1
  *
- * @author	Peter Russ <peter.russ@4many.net>
+ * @author	Peter Russ <peter.russ@uon.li>
  */
 
 

@@ -18,8 +18,8 @@
 #    An on-line copy of the MPL Mozilla Public License can be found
 #    http://www.mozilla.org/MPL/MPL-1.1.html
 #
-# 	Copyright (c) 2006 by 4Many Services
-#   @author: 	Peter Russ <peter.russ@4many.net>
+# 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
+#   @author: 	Peter Russ <peter.russ@uon.li>
 #   @version:	$Id$
 #
 #   Date:       10.12.2006
@@ -29,12 +29,7 @@
 #
 ##################################################
 
-require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
-require_once(PATH_txdam.'lib/class.tx_dam_guifunc.php');
 
-require_once(PATH_t3lib.'class.t3lib_extobjbase.php');
-
-require_once(PATH_t3lib.'class.t3lib_stdgraphic.php');
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));
