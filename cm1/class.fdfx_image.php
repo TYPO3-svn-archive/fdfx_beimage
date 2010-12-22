@@ -1,5 +1,9 @@
 <?php
 /**
+*  Copyright notice
+*
+*  (c)  2006 -2011 Peter Russ (peter.russ@uon.li)  All rights reserved
+
 * License:
 *    This program is free software; you can redistribute it and/or
 *    modify it under the terms of the MPL Mozilla Public License
@@ -17,9 +21,9 @@
 *    An on-line copy of the MPL Mozilla Public License can be found
 *    http://www.mozilla.org/MPL/MPL-1.1.html
 *
-* 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
 *   @author: 		Peter Russ <peter.russ@uon.li>
-*   @version:		$Id$
+*   @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
+*   @version:		$Rev$
 *   @package:		TYPO3
 *   @subpackage:	fdfx_be_image
 *   

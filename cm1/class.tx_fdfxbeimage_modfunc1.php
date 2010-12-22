@@ -1,34 +1,33 @@
 <?php
-#########################################################################
-#
-# License:
-#    This program is free software; you can redistribute it and/or
-#    modify it under the terms of the MPL Mozilla Public License
-#    as published by the Free Software Foundation; either version 1.1
-#    of the License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    MPL Mozilla Public License for more details.
-#
-#    You may have received a copy of the MPL Mozilla Public License
-#    along with this program.
-#
-#    An on-line copy of the MPL Mozilla Public License can be found
-#    http://www.mozilla.org/MPL/MPL-1.1.html
-#
-# 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
-#   @author: 	Peter Russ <peter.russ@uon.li>
-#   @version:	$Id$
-#
-#   Date:       10.12.2006
-#   Filename:   class.tx_fdfxbeimage_modfunc1.php
-#
-#   Project:    fdfx_be_image
-#
-##################################################
+/**
+*  Copyright notice
+*
+*  (c)  2006 -2011 Peter Russ (peter.russ@uon.li)  All rights reserved
 
+* License:
+*    This program is free software; you can redistribute it and/or
+*    modify it under the terms of the MPL Mozilla Public License
+*    as published by the Free Software Foundation; either version 1.1
+*    of the License, or (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    MPL Mozilla Public License for more details.
+*
+*    You may have received a copy of the MPL Mozilla Public License
+*    along with this program.
+*
+*    An on-line copy of the MPL Mozilla Public License can be found
+*    http://www.mozilla.org/MPL/MPL-1.1.html
+*
+*   @author: 		Peter Russ <peter.russ@uon.li>
+*   @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
+*   @version:		$Rev$
+*   @package:		TYPO3
+*   @subpackage:	fdfx_be_image
+*   
+*/
 
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));

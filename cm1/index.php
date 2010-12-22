@@ -1,31 +1,33 @@
 <?php
-/***************************************************************
+/**
 *  Copyright notice
 *
-*  (c) 2005 Peter Russ (peter.russ@uon.li)
-*  All rights reserved
+*  (c)  2006 -2011 Peter Russ (peter.russ@uon.li)  All rights reserved
+
+* License:
+*    This program is free software; you can redistribute it and/or
+*    modify it under the terms of the MPL Mozilla Public License
+*    as published by the Free Software Foundation; either version 1.1
+*    of the License, or (at your option) any later version.
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    MPL Mozilla Public License for more details.
 *
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
+*    You may have received a copy of the MPL Mozilla Public License
+*    along with this program.
 *
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
+*    An on-line copy of the MPL Mozilla Public License can be found
+*    http://www.mozilla.org/MPL/MPL-1.1.html
 *
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
-/**
- * fdfx_be_image module cm1
- *
- * @author	Peter Russ <peter.russ@uon.li>
- */
+*   @author: 		Peter Russ <peter.russ@uon.li>
+*   @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
+*   @version:		$Rev$
+*   @package:		TYPO3
+*   @subpackage:	fdfx_be_image
+*   
+*/
 
 
 
@@ -33,15 +35,10 @@
 unset($MCONF);
 require ('conf.php');
 require ($BACK_PATH.'init.php');
-require ($BACK_PATH.'template.php');
+
 $LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
 #include ('locallang.xml');
-require_once (PATH_t3lib.'class.t3lib_scbase.php');
-	// ....(But no access check here...)
-	// DEFAULT initialization of a module [END]
 
-require_once(PATH_t3lib.'class.t3lib_stdgraphic.php');
-require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
 require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));

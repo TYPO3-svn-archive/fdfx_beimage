@@ -1,35 +1,32 @@
 <?php
-/***************************************************************
+/**
 *  Copyright notice
 *
-*  (c) 2003-2006 Rene Fritz (r.fritz@colorcube.de)
-*  All rights reserved
+*  (c)  2006 -2011 Peter Russ (peter.russ@uon.li)  All rights reserved
+
+* License:
+*    This program is free software; you can redistribute it and/or
+*    modify it under the terms of the MPL Mozilla Public License
+*    as published by the Free Software Foundation; either version 1.1
+*    of the License, or (at your option) any later version.
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    MPL Mozilla Public License for more details.
 *
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
+*    You may have received a copy of the MPL Mozilla Public License
+*    along with this program.
 *
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
+*    An on-line copy of the MPL Mozilla Public License can be found
+*    http://www.mozilla.org/MPL/MPL-1.1.html
 *
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
-/**
- * Part of the DAM (digital asset management) extension.
- *
- * @author	Rene Fritz <r.fritz@colorcube.de>
- * @author	Peter Russ <peter russ@uon.li>
- * @version: 	$Id$
- * Date:        09.12.2006
- * @package fdfx_be_image
- */
+*   @author: 		Peter Russ <peter.russ@uon.li>
+*   @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
+*   @version:		$Rev$
+*   @package:		TYPO3
+*   @subpackage:	fdfx_be_image
+*/
 
 
 
