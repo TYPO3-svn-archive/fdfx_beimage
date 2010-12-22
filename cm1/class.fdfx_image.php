@@ -1,33 +1,29 @@
 <?php
-#########################################################################
-#
-# License:
-#    This program is free software; you can redistribute it and/or
-#    modify it under the terms of the MPL Mozilla Public License
-#    as published by the Free Software Foundation; either version 1.1
-#    of the License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    MPL Mozilla Public License for more details.
-#
-#    You may have received a copy of the MPL Mozilla Public License
-#    along with this program.
-#
-#    An on-line copy of the MPL Mozilla Public License can be found
-#    http://www.mozilla.org/MPL/MPL-1.1.html
-#
-# 	Copyright (c) 2006 by 4Many Services
-#   @author: 	Peter Russ <peter.russ@4many.net>
-#   @version:	$Id$
-#
-#   Date:       21.07.2006
-#   Filename:   class.fdfx_image.php
-#
-#   Project:    project_name
-#
-##################################################
+/**
+* License:
+*    This program is free software; you can redistribute it and/or
+*    modify it under the terms of the MPL Mozilla Public License
+*    as published by the Free Software Foundation; either version 1.1
+*    of the License, or (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    MPL Mozilla Public License for more details.
+*
+*    You may have received a copy of the MPL Mozilla Public License
+*    along with this program.
+*
+*    An on-line copy of the MPL Mozilla Public License can be found
+*    http://www.mozilla.org/MPL/MPL-1.1.html
+*
+* 	Copyright (c) 2006-2011 by Peter Russ, uon GbR
+*   @author: 		Peter Russ <peter.russ@uon.li>
+*   @version:		$Rev$
+*   @package:		TYPO3
+*   @subpackage:	fdfx_be_image
+*   
+*/
 
 class fdfx_image
 {
@@ -378,39 +374,16 @@ class fdfx_image
 		return substr(md5($key.join('', $arr)), 0, 10);
 	}
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.fdfx_image.php'])
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.fdfx_image.php'])
 {
-	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.fdfx_image.php']);
+	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.fdfx_image.php']);
 }
 // Make instance:
-if (isset($_GET['cmd']))
+$cmd = t3lib_div::_GP('cmd');
+if (isset($cmd) && $cmd !=='')
 {
 	require_once ('conf.php');
 	require_once ($BACK_PATH.'init.php');
-	require_once (PATH_t3lib.'class.t3lib_stdgraphic.php');
-	require_once (PATH_t3lib.'class.t3lib_basicfilefunc.php');
-	require_once (PATH_t3lib.'class.t3lib_extfilefunc.php');
-	require_once(PATH_typo3.'sysext/lang/lang.php');
-	$LANG = t3lib_div::makeInstance('language');
-	$LANG->init($BE_USER->uc['lang']);
-	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
-	$SOBE = t3lib_div :: makeInstance('fdfx_image');
-	$SOBE->init();
-	if ($SOBE->continueIt)
-	{
-		//got valid values, no manual hack attack
-		$SOBE->main();
-		$SOBE->printContent();
-	}
-}
-if (isset($_POST['cmd']))
-{
-	require_once ('conf.php');
-	require_once ($BACK_PATH.'init.php');
-	require_once (PATH_t3lib.'class.t3lib_stdgraphic.php');
-	require_once (PATH_t3lib.'class.t3lib_basicfilefunc.php');
-	require_once (PATH_t3lib.'class.t3lib_extfilefunc.php');
-	require_once(PATH_typo3.'sysext/lang/lang.php');
 	$LANG = t3lib_div::makeInstance('language');
 	$LANG->init($BE_USER->uc['lang']);
 	$LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
