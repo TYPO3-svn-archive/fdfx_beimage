@@ -73,8 +73,8 @@ class tx_fdfxbeimage_cm1
 		return $GLOBALS['LANG']->includeLLFile('EXT:fdfx_be_image/locallang.xml',FALSE);
 	}
 }
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_cm1.php'])
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_cm1.php'])
 {
-	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/class.tx_fdfxbeimage_cm1.php']);
+	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_cm1.php']);
 }
 ?>

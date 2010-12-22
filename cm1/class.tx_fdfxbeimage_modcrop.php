@@ -29,11 +29,7 @@
 *   
 */
 
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));
-
-class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
+class tx_fdfxbeimage_modcrop extends t3lib_extobjbase
 {
 	var $imgObj;
 	var $extKey='fdfx_be_image';
@@ -82,7 +78,7 @@ class tx_fdfxbeimage_modfunc1 extends t3lib_extobjbase
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modfunc1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modfunc1.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modcrop.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modcrop.php']);
 }
 ?>

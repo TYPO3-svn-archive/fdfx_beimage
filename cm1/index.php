@@ -37,12 +37,6 @@ require ('conf.php');
 require ($BACK_PATH.'init.php');
 
 $LANG->includeLLFile('EXT:fdfx_be_image/cm1/locallang.xml');
-#include ('locallang.xml');
-
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/cm1/class.fdfx_image.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_crop.php'));
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_rotate.php'));
 
 class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 
@@ -54,9 +48,6 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 			'function' => Array (
 				'1' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function1'),
 				'2' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function2'),
-/*
-				'3' => $GLOBALS['LANG']->getLL('tx_fdfxbeimage_function3'),
-*/
 			)
 		);
 		parent::menuConfig();

@@ -8,9 +8,8 @@ if (TYPO3_MODE == "BE")
 	{
 		t3lib_extMgm::insertModuleFunction(
 			'txdamM1_cmd',
-			'tx_fdfxbeimage_modfunc1',
-			t3lib_extMgm::extPath($_EXTKEY).'cm1/class.tx_fdfxbeimage_modfunc1.php',
-//			t3lib_extMgm::extPath($_EXTKEY).'cm1/locallang.xml:tx_fdfxbeimage_function1'
+			'tx_fdfxbeimage_modcrop',
+			t3lib_extMgm::extPath($_EXTKEY).'cm1/class.tx_fdfxbeimage_modcrop.php',
 			'LLL:EXT:fdfx_be_image/cm1/locallang.xml:tx_fdfxbeimage_function1'
 		);
 		t3lib_extMgm::insertModuleFunction(

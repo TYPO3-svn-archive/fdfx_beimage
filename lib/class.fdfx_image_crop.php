@@ -28,8 +28,6 @@
 *   @subpackage:	fdfx_be_image
 *   
 */
-require_once(t3lib_div::getFileAbsFileName('EXT:fdfx_be_image/lib/class.fdfx_image_basic.php'));
-
 class fdfx_Image_Crop extends fdfx_Image_Basic
 {
 	function _getContent()

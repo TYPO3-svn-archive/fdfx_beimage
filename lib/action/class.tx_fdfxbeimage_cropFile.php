@@ -39,7 +39,7 @@
  */
 class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 
-	var $cmd = 'tx_fdfxbeimage_modfunc1';
+	var $cmd = 'tx_fdfxbeimage_modcrop';
 
 	/**
 	 * Defines the types that the object can render
