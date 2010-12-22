@@ -38,13 +38,13 @@
  */
 class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 
-	var $cmd = 'tx_fdfxbeimage_modrotate';
+	protected $cmd = 'tx_fdfxbeimage_modrotate';
 
 	/**
 	 * Defines the types that the object can render
 	 * @var array
 	 */
-	var $typesAvailable = array('icon', 'control');
+	public $typesAvailable = array('icon', 'control');
 
 
 	/**
@@ -58,7 +58,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @param	array		$env Environment array. Can be set with setEnv() too.
 	 * @return	boolean
 	 */
-	function isPossiblyValid ($type, $itemInfo=NULL, $env=NULL) {
+	public function isPossiblyValid ($type, $itemInfo=NULL, $env=NULL) {
 		if ($valid = $this->isTypeValid ($type, $itemInfo, $env)) {
 			$valid = ($this->itemInfo['__type'] == 'file');
 		}
@@ -74,7 +74,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @param	array		$env Environment array. Can be set with setEnv() too.
 	 * @return	boolean
 	 */
-	function isValid ($type, $itemInfo=NULL, $env=NULL) {
+	public function isValid ($type, $itemInfo=NULL, $env=NULL) {
 		$valid = $this->isTypeValid ($type, $itemInfo, $env);
 
 		if ($valid) {
@@ -91,7 +91,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @param	string		$addAttribute Additional attributes
 	 * @return	string
 	 */
-	function getIcon ($addAttribute='') {
+	public function getIcon ($addAttribute='') {
 		global $BACK_PATH;
 
 		if ($this->disabled) {
@@ -110,7 +110,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 *
 	 * @return	string
 	 */
-	function getDescription () {
+	public function getDescription () {
 		return $GLOBALS['LANG']->sL('LLL:EXT:fdfx_be_image/cm1/locallang.xml:tx_fdfxbeimage_function2');
 	}
 
@@ -121,7 +121,7 @@ class tx_fdfxbeimage_rotateFile extends tx_dam_actionbase {
 	 * @return	array		Command array
 	 * @access private
 	 */
-	function _getCommand() {
+	public function _getCommand() {
 
 		$filepath = $this->itemInfo['file_path_absolute'].$this->itemInfo['file_name'];
 
