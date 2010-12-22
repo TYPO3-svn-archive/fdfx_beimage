@@ -35,7 +35,7 @@ class tx_fdfxbeimage_modcrop extends t3lib_extobjbase {
 	protected $fileName = '';
 	
 	protected function _init() {
-		$this->imgObj = t3lib_div::makeInstance ( 'fdfx_Image_Crop' );
+		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_Crop' );
 		$this->fileName = t3lib_div::_GP ( 'file' );
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}

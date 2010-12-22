@@ -29,7 +29,7 @@
  * 
  */
 
-class fdfx_image {
+class tx_fdfxbeimage_image {
 	protected $cmd = '';
 	protected $params = array ();
 	protected $content = '';
@@ -98,7 +98,7 @@ class fdfx_image {
 			foreach ( $checkArr as $key ) {
 				$ar [] = $this->params [$key];
 			}
-			$md5Check = fdfx_image::getEncryptionMd5 ( $this->encryptionKey, $ar );
+			$md5Check = self::getEncryptionMd5 ( $this->encryptionKey, $ar );
 			$isOk = ($md5 == $md5Check);
 		}
 		$this->error = ($isOk) ? '' : 'MD5 error in hash! No valid access. MD5 was ' . $md5 . ' and should be ' . $md5Check;
@@ -229,7 +229,7 @@ class fdfx_image {
 				$this->content .= ",path:'" . $this->backPath . '../' . substr ( $imgInfoNew [3], strlen ( PATH_site ) ) . "'\n";
 				$this->content .= ",width:" . $imgInfoNew [0] . "\n";
 				$this->content .= ",height:" . $imgInfoNew [1] . "\n";
-				$this->content .= ",chash:'" . fdfx_image::getEncryptionMd5 ( $this->encryptionKey, array ('rotate', $filenameOrg ) ) . "'\n";
+				$this->content .= ",chash:'" . self::getEncryptionMd5 ( $this->encryptionKey, array ('rotate', $filenameOrg ) ) . "'\n";
 				$this->content .= ",history:0\n";
 				$this->content .= "}";
 			} else {

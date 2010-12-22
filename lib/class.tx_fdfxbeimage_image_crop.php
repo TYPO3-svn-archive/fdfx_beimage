@@ -28,7 +28,7 @@
  * @subpackage:	fdfx_be_image
  * 
  */
-class fdfx_Image_Crop extends fdfx_Image_Basic {
+class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 	
 	public function getContent() {
 		$content = '';
@@ -128,7 +128,7 @@ class fdfx_Image_Crop extends fdfx_Image_Basic {
 </div>
 
 <script type="text/javascript">
-setCHash("' . fdfx_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"] ["encryptionKey"], array ('crop', $fileNameLocal ) ) . '");
+setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"] ["encryptionKey"], array ('crop', $fileNameLocal ) ) . '");
 autoCrop=' . ((intval ( $this->conf ['FIXED_SIZE_DEFAULT'] ) > 0) ? 1 : 0) . ';
 init_imageCrop();
 </script>
@@ -208,7 +208,7 @@ init_imageCrop();
 	}
 }
 
-if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_crop.php']) {
-	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_crop.php']);
+if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagecrop.php']) {
+	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagecrop.php']);
 }
 ?>

@@ -35,6 +35,8 @@
  * @package fdfx_be_image
  * @see tx_dam_actionbase
  */
+require_once t3lib_extMgm::extPath('dam') . 'lib/class.tx_dam_actionbase.php';
+
 class tx_fdfxbeimage_cropFile extends tx_dam_actionbase {
 	
 	protected $cmd = 'tx_fdfxbeimage_modcrop';

@@ -35,7 +35,7 @@ class tx_fdfxbeimage_modrotate extends t3lib_extobjbase {
 	protected $fileName = '';
 	
 	function _init() {
-		$this->imgObj = t3lib_div::makeInstance ( 'fdfx_Image_Rotate' );
+		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_Rotate' );
 		$this->fileName = t3lib_div::_GP ( 'file' );
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}

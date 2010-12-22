@@ -60,7 +60,7 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 	}
 	
 	protected function _initImageObject($class = 'Crop') {
-		$this->imgObj = t3lib_div::makeInstance ( 'fdfx_Image_' . $class );
+		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image' . $class );
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}
 	

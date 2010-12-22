@@ -28,7 +28,7 @@
  * @subpackage:	fdfx_be_image
  * 
  */
-class fdfx_Image_Rotate extends fdfx_Image_Basic {
+class tx_fdfxbeimage_Image_Rotate extends tx_fdfxbeimage_Image_Basic {
 	
 	function getContent() {
 		global $BACK_PATH;
@@ -81,7 +81,7 @@ class fdfx_Image_Rotate extends fdfx_Image_Basic {
 </div>
 
 <script type="text/javascript">
-setCHash("' . fdfx_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"] ["encryptionKey"], array ('rotate', $fileNameLocal ) ) . '");
+setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"] ["encryptionKey"], array ('rotate', $fileNameLocal ) ) . '");
 </script>
 ';
 		if (t3lib_extMgm::isLoaded ( 'dam' )) {
@@ -164,7 +164,7 @@ setCHash("' . fdfx_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"
 		return $content;
 	}
 }
-if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_rotate.php']) {
-	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_rotate.php']);
+if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagerotate.php']) {
+	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagerotate.php']);
 }
 ?>

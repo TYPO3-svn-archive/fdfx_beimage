@@ -28,7 +28,7 @@
  * @subpackage:	fdfx_be_image
  * 
  */
-class fdfx_Image_Basic {
+class tx_fdfxbeimage_Image_Basic {
 	protected $fileName = '';
 	protected $fileNameLocal = '';
 	protected $conf = array ();
@@ -36,7 +36,7 @@ class fdfx_Image_Basic {
 	protected $returnUrl = '';
 	protected $docHeaderButtons = false;
 	
-	protected function _init($extKey = 'fdfx_be_image', $fName = '') {
+	public function _init($extKey = 'fdfx_be_image', $fName = '') {
 		$this->extKey = $extKey;
 		if ($fName != '') {
 			$this->setFileName ( $fName );
@@ -87,7 +87,7 @@ class fdfx_Image_Basic {
 		return $this->fileName;
 	}
 }
-if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_basic.php']) {
-	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.fdfx_image_basic.php']);
+if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagebasic.php']) {
+	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagebasic.php']);
 }
 ?>
