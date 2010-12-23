@@ -59,7 +59,7 @@ class tx_fdfxbeimage_Image_Rotate extends tx_fdfxbeimage_Image_Basic {
 			<button id="actionRotateLeft" class="disabledButton" onclick="return leftRotate();" disabled>' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_ccw' ) . '</button>
 			<button id="actionRotateRight" class="disabledButton" onclick="return rightRotate();" disabled>' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_cw' ) . '</button>
 		</form>
-		<form name="formImageInfo" action="' . $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'cm1/class.fdfx_image.php" method="post" id="formImageInfo">
+		<form name="formImageInfo" action="' . '../../../../' . t3lib_extMgm::extRelPath ( self::$extKey ) . 'cm1/class.tx_fdfxbeimage_image.php" method="post" id="formImageInfo">
 			<input type="hidden" name="cmd" id="image_mode" value="rotate" />
 			<input type="hidden" name="store" id="image_mode" value="2" />
 			<input type="hidden" name="chash" id="image_chash" value="2" />
@@ -69,7 +69,7 @@ class tx_fdfxbeimage_Image_Rotate extends tx_fdfxbeimage_Image_Basic {
 			<button id="actionSave" class="button"  onclick="return saveImage();">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_save' ) . '</button>
 		</form>
 	</fieldset>
-	<img id="loading" style="display:none;" src="' . $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'res/crop-image/images/loading.gif" />
+	<img id="loading" style="display:none;" src="' . '../../../../' . t3lib_extMgm::extRelPath ( self::$extKey ) . 'res/crop-image/images/loading.gif" />
 </div>
 <div id="imageArea">
     <div id="imageContainer">
@@ -94,7 +94,7 @@ setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VAR
 	function getHeader() {
 		global $BACK_PATH;
 		
-		$extPath = $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'res/crop-image/';
+		$extPath = $BACK_PATH . t3lib_extMgm::extRelPath ( self::$extKey ) . 'res/crop-image/';
 		$imgObj = t3lib_div::makeInstance ( 't3lib_stdGraphic' );
 		$imgObj->init ();
 		$imgObj->mayScaleUp = 0;
@@ -158,7 +158,7 @@ setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VAR
 	}
 	</script>
 	<script type="text/javascript">
-	extensionPath="' . $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'res/crop-image/";
+	extensionPath="' . $BACK_PATH . t3lib_extMgm::extRelPath ( self::$extKey ) . 'res/crop-image/";
 	</script>
 ';
 		return $content;

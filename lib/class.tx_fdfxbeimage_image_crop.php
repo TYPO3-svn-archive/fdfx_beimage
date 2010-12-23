@@ -34,6 +34,7 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 		$content = '';
 		$options = '';
 		$optionLines = explode ( ',', $this->conf ['FIXED_SIZE'] );
+		$sessionData = tx_fdfxbeimage_Image_Basic::sessionGet();
 		$count = 1;
 		foreach ( $optionLines as $line ) {
 			$sel = ($count ++ == $this->conf ['FIXED_SIZE_DEFAULT']) ? ' selected="selected"' : '';
@@ -43,6 +44,12 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 		$fI = t3lib_div::split_fileref ( $this->fileName );
 		$fileNameLocal = substr ( $this->fileName, strlen ( PATH_site ) );
 		$fileName = t3lib_div::isFirstPartOfStr ( $this->fileName, PATH_site ) ? '../../../../' . (($this->fileNameLocal) ? $this->fileNameLocal : $fileNameLocal) : $fI ['file'];
+		$x = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'x');
+		$y = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'y');
+		$width =tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'width');
+		$height = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'height');
+		$percentSize = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'percentSize');
+		$convertTo = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'convertTo');
 		$content = '
 <div id="pageContent">
 ' . $this->btn_back ( '', $this->returnUrl ) . '
@@ -57,11 +64,11 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 	<legend>' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_legend_offset' ) . '</legend>
     <div class="item item-crop-x">
     	<label for=""input_crop_x">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_x' ) . '</label>
-        <input type="text" class="textInput" name="crop_x" id="input_crop_x" />
+        <input type="text" class="textInput" name="crop_x" id="input_crop_x" value="' . $x . '"/>
     </div>
     <div class="item item-crop-y">
     	<label for=""input_crop_y">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_y' ) . '</label>
-        <input type="text" class="textInput" name="crop_y" id="input_crop_y" />
+        <input type="text" class="textInput" name="crop_y" id="input_crop_y" value="' . $y . '" />
     </div>
 	<div class="item item-dimension">
 		Dimension: <span id="label_dimension"></span>
@@ -71,11 +78,11 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 	<legend>' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_legend_dimension' ) . '</legend>
     <div class="item item-crop-width">
     	<label for=""input_crop_width">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_width' ) . '</label>
-        <input type="text" class="textInput" name="crop_width" id="input_crop_width" />
+        <input type="text" class="textInput" name="crop_width" id="input_crop_width"  value="' . $width . '"/>
     </div>
     <div class="item item-crop-height">
     	<label for=""input_crop_height">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_height' ) . '</label>
-        <input type="text" class="textInput" name="crop_height" id="input_crop_height" />
+        <input type="text" class="textInput" name="crop_height" id="input_crop_height"  value="' . $height . '"/>
     </div>
     <div class="item item-ratio">
     	<label for=""input_ratiol">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_ratio' ) . '</label>
@@ -90,15 +97,15 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 	<legend>' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_legend_output' ) . '</legend>
     <div class="item item-crop-percent-size">
     	<label for=""input_crop__percent_size">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_percent' ) . '</label>
-        <input type="text" class="textInput" name="crop_percent_size" id="crop_percent_size" />
+        <input type="text" class="textInput" name="crop_percent_size" id="crop_percent_size"  value="' . $percentSize . '"/>
     </div>
     <div class="item item-convert-to">
     	<label for=""input_convert_to">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_convert' ) . '</label>
 		<select class="textInput" id="input_convert_to">
-			<option value="gif">GIF</option>
-			<option value="jpg" selected>JPG</option>
-			<option value="png">PNG</option>
-		</select>
+			<option value="jpg" ' . ($convertTo == 'jpg'? ' selected':'') . '>JPG</option>
+			<option value="png" ' . ($convertTo == 'png'? ' selected':'') . '>PNG</option>
+			<option value="gif" ' . ($convertTo == 'gif'? ' selected':'') . '>GIF</option>
+			</select>
     </div>
     <div class="item item-fixedsize">
     	<label for=""input_fixedsize">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_fixedsize' ) . '</label>
@@ -140,7 +147,7 @@ resizeWinTo();
 	public function getHeader() {
 		global $BACK_PATH;
 		
-		$extPath = $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'res/crop-image/';
+		$extPath = $BACK_PATH . t3lib_extMgm::extRelPath ( self::$extKey ) . 'res/crop-image/';
 		$imgObj = t3lib_div::makeInstance ( 't3lib_stdGraphic' );
 		$imgObj->init ();
 		$imgObj->mayScaleUp = 0;
@@ -172,7 +179,7 @@ resizeWinTo();
 	<script type="text/javascript" src="' . $extPath . 'js/xp-info-pane.js"></script>
 	<script type="text/javascript" src="' . $extPath . 'js/ajax.js"></script>
 	<script type="text/javascript">
-	var crop_script_server_file ="' . $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'cm1/class.fdfx_image.php";
+	var crop_script_server_file ="' . '../../../../' . t3lib_extMgm::extRelPath ( self::$extKey ) . 'cm1/class.tx_fdfxbeimage_image.php";
 
 	var cropToolBorderWidth = 1;	// Width of dotted border around crop rectangle
 	var smallSquareWidth = 7;	// Size of small squares used to resize crop rectangle
@@ -216,7 +223,7 @@ resizeWinTo();
 	</script>
 	<script type="text/javascript" src="' . $extPath . 'js/image-crop.js"></script>
 	<script type="text/javascript">
-	extensionPath="' . $BACK_PATH . t3lib_extMgm::extRelPath ( $this->extKey ) . 'res/crop-image/";
+	extensionPath="' . $BACK_PATH . t3lib_extMgm::extRelPath ( self::$extKey ) . 'res/crop-image/";
 	</script>
 ';
 		return $content;

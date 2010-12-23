@@ -50,21 +50,21 @@ class SC_wizard_crop {
 	protected $doClose;				// Boolean; if set, the window will be closed by JavaScript
 	protected $uid;					// integer
 	protected $cmd = 'tx_fdfxbeimage_modcrop';
-
-
-
+	
 
 	/**
 	 * Initialization of the script
 	 *
 	 * @return	void
 	 */
-	function init()	{
-		$this->P = t3lib_div::_GP('P');
-		parse_str($this->P['itemName'], $output);
-		$uids = array_keys($output['data']['tt_content']);
-		$this->uid = $uids[0];
+	public function init()	{
 		$this->doClose = t3lib_div::_GP('doClose');		// Used for the return URL to alt_doc.php so that we can close the window.
+		if (!$this->doClose) {
+			$this->P = t3lib_div::_GP('P');
+			parse_str($this->P['itemName'], $output);
+			$uids = array_keys($output['data']['tt_content']);
+			$this->uid = $uids[0];
+		}
 	}
 
 	/**
@@ -73,7 +73,7 @@ class SC_wizard_crop {
 	 *
 	 * @return	void
 	 */
-	function main()	{
+	public function main()	{
 		global $TCA;
 
 		if ($this->doClose)	{
@@ -100,6 +100,13 @@ class SC_wizard_crop {
 				$refField = $config['MM_match_fields']['ident'];
 				$damFiles = tx_dam_db::getReferencedFiles('tt_content', $this->uid, $refField);
 
+				$sessionData = array(
+					  'uid_local' => $values[0]
+					, 'uid_foreign' => $this->uid
+					, 'isApi' => true
+				);
+				tx_fdfxbeimage_Image_Basic::addStoredParamsFromDb($sessionData,$values[0],$this->uid);
+				tx_fdfxbeimage_Image_Basic::sessionSave($sessionData);
 				
 				$script = '../../../' . PATH_txdam_rel . 'mod_cmd/index.php';
 				$script .= '?CMD=' . $this->cmd;
@@ -113,13 +120,12 @@ class SC_wizard_crop {
 		}
 	}
 	
-
 	/**
 	 * Printing a little JavaScript to close the open window.
 	 *
 	 * @return	void
 	 */
-	function closeWindow()	{
+	public function closeWindow()	{
 		echo '<script language="javascript" type="text/javascript">close();</script>';
 		exit;
 	}

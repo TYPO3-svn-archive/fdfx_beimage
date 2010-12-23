@@ -42,6 +42,8 @@ class tx_fdfxbeimage_image {
 	protected $errorMsg = '';
 	protected $error = '';
 	protected $extKey = '';
+	protected $sessionData = array();
+	protected $apiCall = null;
 	
 	/**
 	 * 
@@ -88,6 +90,7 @@ class tx_fdfxbeimage_image {
 			}
 		
 		}
+		$this->sessionData = tx_fdfxbeimage_Image_Basic::sessionGet();
 	}
 	
 	protected function _checkMd5($checkArr = array ()) {
@@ -103,6 +106,25 @@ class tx_fdfxbeimage_image {
 		}
 		$this->error = ($isOk) ? '' : 'MD5 error in hash! No valid access. MD5 was ' . $md5 . ' and should be ' . $md5Check;
 		return $isOk;
+	}
+	
+	protected function isApiCall() {
+		if (is_null($this->apiCall)) {
+			$this->apiCall = isset($this->sessionData) 
+				&& is_array($this->sessionData) 
+				&& isset($this->sessionData['isApi'])
+				&& ($this->sessionData['isApi'] == true)
+				;
+		}
+		return $this->apiCall;
+	}
+	
+	protected function getSessionNamePart() {
+		$namePart = '';
+		if ($this->isApiCall()) {
+			$namePart = '.' . $this->sessionData['uid_local'] . '_' . $this->sessionData['uid_foreign'] .'.';
+		}
+		return $namePart;
 	}
 	
 	/**
@@ -148,8 +170,10 @@ class tx_fdfxbeimage_image {
 		if ($basicFF == null) {
 			$basicFF = t3lib_div::makeInstance ( 't3lib_basicFileFunctions' );
 		}
-		$newFileName = $fileNamePrefix . $imgInfo [0] . 'x' . $imgInfo [1] . '.' . $imgInfo [2];
-		$newFilePath = $basicFF->getUniqueName ( $newFileName, $dir );
+		$namePart = $this->isApiCall() ? $this->getSessionNamePart() : $imgInfo [0] . 'x' . $imgInfo [1] .'.';     
+		$newFileName = $fileNamePrefix. $namePart . $imgInfo [2];
+		$dontCheckForUnique = $this->isApiCall();
+		$newFilePath = $basicFF->getUniqueName ( $newFileName, $dir , $dontCheckForUnique);
 		t3lib_div::upload_copy_move ( $imgInfo [3], $newFilePath );
 		unlink ( $imgInfo [3] );
 		$imgInfo [3] = substr ( $newFilePath, strlen ( PATH_site ) );
@@ -177,6 +201,16 @@ class tx_fdfxbeimage_image {
 			}
 			if (! $dirname) {
 				$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($this->conf ['NEW_PATH'], $data ['target'] ) );
+			}
+		}
+		if ($dirname && $this->isApiCall()) {
+			$data = array ('data' => 'temp', 'target' => $dirname );
+			$dirname = $data ['target'] . '/' . $data ['data'];
+			if (! file_exists ( $dirname )) {
+				$dirname = $extFF->func_newfolder ( $data );
+			}
+			if (! $dirname) {
+				$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($data['data'], $data ['target'] ) );
 			}
 		}
 		return $dirname;
@@ -279,7 +313,10 @@ class tx_fdfxbeimage_image {
 					$extFF = $this->_initExtFileFunc ();
 					$dirName = $this->_getDirname ( $file, $extFF );
 					if ($dirName) {
-						$saveImgInfo = $this->_storeImage ( 'crop.' . $imgObj->filenamePrefix, $dirName, $imgInfoNew, $extFF );
+						$saveImgInfo = $this->_storeImage ( $imgObj->filenamePrefix . 'crop', $dirName, $imgInfoNew, $extFF );
+						if ($this->isApiCall()) {
+							tx_fdfxbeimage_Image_Basic::saveStoredParamsToDb($this->sessionData,$saveImgInfo[3],$convertParamAdd,$this->params);
+						}
 						$this->content .= "alert('" . $this->getMsg ( 'success_image_saved', array ($saveImgInfo [3] ) ) . "');";
 					} else {
 						$this->content .= "alert('" . $this->getMsg ( 'error' ) . $this->errorMsg . "');";
@@ -323,6 +360,10 @@ class tx_fdfxbeimage_image {
 		echo $this->content;
 	}
 	
+	public function getContinueIt() {
+		return $this->continueIt;
+	}
+	
 	/*
 	 * STATICS
 	 */
@@ -336,16 +377,20 @@ if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/f
 }
 
 // Make instance:
-$cmd = t3lib_div::_GP ( 'cmd' );
+if (isset($_GET['cmd'])) {
+	$cmd = $_GET['cmd'];
+} elseif (isset($_POST['cmd'])) {
+	$cmd = $_POST['cmd'];
+}
 if (isset ( $cmd ) && $cmd !== '') {
 	require_once ('conf.php');
 	require_once ($BACK_PATH . 'init.php');
 	$LANG = t3lib_div::makeInstance ( 'language' );
 	$LANG->init ( $BE_USER->uc ['lang'] );
 	$LANG->includeLLFile ( 'EXT:fdfx_be_image/cm1/locallang.xml' );
-	$SOBE = t3lib_div::makeInstance ( 'fdfx_image' );
+	$SOBE = t3lib_div::makeInstance ( 'tx_fdfxbeimage_image' );
 	$SOBE->init ();
-	if ($SOBE->continueIt) {
+	if ($SOBE->getContinueIt()) {
 		//got valid values, no manual hack attack
 		$SOBE->main ();
 		$SOBE->printContent ();

@@ -32,12 +32,12 @@ class tx_fdfxbeimage_Image_Basic {
 	protected $fileName = '';
 	protected $fileNameLocal = '';
 	protected $conf = array ();
-	protected $extKey = '';
+	static protected $extKey = 'fdfx_be_image';
+	static protected $tableName = 'tx_fdfxbeimage_dam_content_ref';
 	protected $returnUrl = '';
 	protected $docHeaderButtons = false;
 	
 	public function _init($extKey = 'fdfx_be_image', $fName = '') {
-		$this->extKey = $extKey;
 		if ($fName != '') {
 			$this->setFileName ( $fName );
 		}
@@ -86,6 +86,80 @@ class tx_fdfxbeimage_Image_Basic {
 	public function getFileName() {
 		return $this->fileName;
 	}
+
+	static public function addStoredParamsFromDb(&$sessionData,$uid_local,$uid_foreign) {
+		$sessionData['storedParams'] = false;
+		$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			  'convertparams,originalparams'
+			  , self::$tableName
+			  , 'uid_local =' . $uid_local . ' and uid_foreign = ' . $uid_foreign
+		);
+		if ($result && $GLOBALS['TYPO3_DB']->sql_num_rows($result) > 0) {
+			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result);
+			if (!empty($row['convertparams']) && !empty($row['originalparams'])) {
+				$row['originalparams'] = unserialize($row['originalparams']);
+				$sessionData['storedParams'] = $row;
+				unset ($row, $result);
+			}
+		}
+	}
+	
+	static public function getValueFromSession(&$sessionData,$attribute,$action='crop') {
+		$value = '';
+		if (is_array($sessionData['storedParams']) && $sessionData['storedParams']['originalparams']['cmd'] === $action) {
+			$value = $sessionData['storedParams']['originalparams'][$attribute];
+		}
+		return $value;
+	}
+	
+	static public function saveStoredParamsToDb($sessionData, $fileName, $convertParams, $originalParams) {
+		$data = array(
+			  'cruser_id' => $GLOBALS['BE_USER']->user['uid']
+			, 'uid_local' => intval($sessionData['uid_local'])
+			, 'uid_foreign' => intval($sessionData['uid_foreign'])
+			, 'filename' => $fileName
+			, 'convertparams' => $convertParams
+			, 'originalparams' => serialize($originalParams)
+			, 'crdate' => $GLOBALS['EXEC_TIME']
+			, 'tstamp' => $GLOBALS['EXEC_TIME']
+		);
+		if (is_array($sessionData['storedParams'])) {
+			// we have to update existing record
+			$where = 'uid_local =' . $data['uid_local'] . ' and uid_foreign = ' . $data['uid_foreign'];
+			unset($data['uid_local'],$data['uid_foreign'],$data['crdate']);
+			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+				self::$tableName
+				, $where
+				, $data
+			);
+						
+		} else {
+			// we have to inset record
+			$GLOBALS['TYPO3_DB']->exec_INSERTquery(
+					self::$tableName
+					, $data
+			);
+		}
+		$sessionData['storedParams'] = array(
+			'convertparams' => $convertParams
+			, 'originalparams' => $originalParams
+		);
+		self::sessionSave($sessionData);
+	}
+	
+	static public function sessionSave($sessionData) {
+		$array = $GLOBALS ['BE_USER']->getSessionData ( self::$extKey );
+		if (!is_array($array)) {
+			$array = array();
+		}
+		$array = array_merge($array, $sessionData);
+		$GLOBALS ['BE_USER']->setAndSaveSessionData ( self::$extKey, $array );
+	}
+	
+	static public function sessionGet() {
+		return $GLOBALS ['BE_USER']->getSessionData ( self::$extKey );
+	}
+	
 }
 if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagebasic.php']) {
 	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/lib/class.tx_fdfxbeimage_Imagebasic.php']);

@@ -12,5 +12,5 @@ NEW_PATH= fdfx_image
 RESIZE_COMMAND=resize
 #cat=Dimensions; type=string; label=Fixed Size: defines fixed sizes for final image manipulation. Can be overwritten in user TSConfig
 FIXED_SIZE=640x480=VGA,800x600=WGA,1024x768=XGA
-#cat=Dimensions; type=string; label=Fixed Size Default:defines index of which fixed size will be selected automatically for crop is selected. Can be overwritten in user TSConfig
+#cat=Dimensions; type=string; label=Fixed Size Default:defines index of fixed size which will be selected automatically if crop is selected. Can be overwritten in user TSConfig
 FIXED_SIZE_DEFAULT=
