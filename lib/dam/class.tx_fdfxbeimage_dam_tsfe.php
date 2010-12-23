@@ -89,15 +89,19 @@ class tx_fdfxbeimage_dam_tsfe{
 		
 		// Now we check if we have cropped images
 		
-		$this->updateProcessedImages($damFiles);
-
+		$this->updateProcessedImages($damFiles, $uid);
+		
 		$files = array_merge($files, $damFiles['files']);
 
 		return implode(',', $files);
 	}
 	
-	protected function updateProcessedImages($damFiles) {
-		t3lib_div::debug($damFiles, __FILE__.':'.__FUNCTION__."\t".__LINE__ );
+	protected function updateProcessedImages(&$damFiles, $uid) {
+		$uidList = array_keys($damFiles['files']);
+		$fileList = tx_fdfxbeimage_data::fetchFileList($uidList, $uid);
+		foreach ($fileList as $key=> $fileName) {
+			$damFiles['files'][$key] = $fileName;
+		} 
 	} 
 
 }

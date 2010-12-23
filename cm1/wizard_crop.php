@@ -105,8 +105,8 @@ class SC_wizard_crop {
 					, 'uid_foreign' => $this->uid
 					, 'isApi' => true
 				);
-				tx_fdfxbeimage_Image_Basic::addStoredParamsFromDb($sessionData,$values[0],$this->uid);
-				tx_fdfxbeimage_Image_Basic::sessionSave($sessionData);
+				tx_fdfxbeimage_data::addStoredParamsFromDb($sessionData,$values[0],$this->uid);
+				tx_fdfxbeimage_data::sessionSave($sessionData);
 				
 				$script = '../../../' . PATH_txdam_rel . 'mod_cmd/index.php';
 				$script .= '?CMD=' . $this->cmd;

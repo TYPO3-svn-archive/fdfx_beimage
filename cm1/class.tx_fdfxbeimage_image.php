@@ -90,7 +90,7 @@ class tx_fdfxbeimage_image {
 			}
 		
 		}
-		$this->sessionData = tx_fdfxbeimage_Image_Basic::sessionGet();
+		$this->sessionData = tx_fdfxbeimage_data::sessionGet();
 	}
 	
 	protected function _checkMd5($checkArr = array ()) {
@@ -315,7 +315,7 @@ class tx_fdfxbeimage_image {
 					if ($dirName) {
 						$saveImgInfo = $this->_storeImage ( $imgObj->filenamePrefix . 'crop', $dirName, $imgInfoNew, $extFF );
 						if ($this->isApiCall()) {
-							tx_fdfxbeimage_Image_Basic::saveStoredParamsToDb($this->sessionData,$saveImgInfo[3],$convertParamAdd,$this->params);
+							tx_fdfxbeimage_data::saveStoredParamsToDb($this->sessionData,$saveImgInfo[3],$convertParamAdd,$this->params);
 						}
 						$this->content .= "alert('" . $this->getMsg ( 'success_image_saved', array ($saveImgInfo [3] ) ) . "');";
 					} else {

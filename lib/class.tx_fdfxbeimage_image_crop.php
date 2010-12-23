@@ -34,7 +34,7 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 		$content = '';
 		$options = '';
 		$optionLines = explode ( ',', $this->conf ['FIXED_SIZE'] );
-		$sessionData = tx_fdfxbeimage_Image_Basic::sessionGet();
+		$sessionData = tx_fdfxbeimage_data::sessionGet();
 		$count = 1;
 		foreach ( $optionLines as $line ) {
 			$sel = ($count ++ == $this->conf ['FIXED_SIZE_DEFAULT']) ? ' selected="selected"' : '';
@@ -44,12 +44,12 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 		$fI = t3lib_div::split_fileref ( $this->fileName );
 		$fileNameLocal = substr ( $this->fileName, strlen ( PATH_site ) );
 		$fileName = t3lib_div::isFirstPartOfStr ( $this->fileName, PATH_site ) ? '../../../../' . (($this->fileNameLocal) ? $this->fileNameLocal : $fileNameLocal) : $fI ['file'];
-		$x = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'x');
-		$y = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'y');
-		$width =tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'width');
-		$height = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'height');
-		$percentSize = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'percentSize');
-		$convertTo = tx_fdfxbeimage_Image_Basic::getValueFromSession($sessionData, 'convertTo');
+		$x = tx_fdfxbeimage_data::getValueFromSession($sessionData, 'x');
+		$y = tx_fdfxbeimage_data::getValueFromSession($sessionData, 'y');
+		$width =tx_fdfxbeimage_data::getValueFromSession($sessionData, 'width');
+		$height = tx_fdfxbeimage_data::getValueFromSession($sessionData, 'height');
+		$percentSize = tx_fdfxbeimage_data::getValueFromSession($sessionData, 'percentSize');
+		$convertTo = tx_fdfxbeimage_data::getValueFromSession($sessionData, 'convertTo');
 		$content = '
 <div id="pageContent">
 ' . $this->btn_back ( '', $this->returnUrl ) . '

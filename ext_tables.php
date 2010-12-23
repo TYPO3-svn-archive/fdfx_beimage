@@ -49,4 +49,5 @@ if (TYPO3_MODE == "BE") {
 	}
 	
 }
+t3lib_extMgm::addStaticFile($_EXTKEY,'res/static/dam_ttcontent/', 'fdfx_be_image:dam');
 ?>

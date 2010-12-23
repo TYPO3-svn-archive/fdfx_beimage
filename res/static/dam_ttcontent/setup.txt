@@ -1,4 +1,4 @@
-includeLibs.tx_damttcontent = EXT:fdfx_be_image/lib/dam/class.tx_fdfxbeimage_dam_tsfe.php
+includeLibs.tx_fdfxbeimage_dam_tsfe = EXT:fdfx_be_image/lib/dam/class.tx_fdfxbeimage_dam_tsfe.php
 
 tt_content.image.20.imgList.cObject {
 	userFunc = tx_fdfxbeimage_dam_tsfe->fetchFileList
