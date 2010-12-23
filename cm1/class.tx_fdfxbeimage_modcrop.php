@@ -25,7 +25,7 @@
  * @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
  * @version:		$Rev$
  * @package:		TYPO3
- * @subpackage:	fdfx_be_image
+ * @subpackage:		fdfx_be_image
  * 
  */
 
@@ -36,7 +36,9 @@ class tx_fdfxbeimage_modcrop extends t3lib_extobjbase {
 	
 	protected function _init() {
 		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_Crop' );
-		$this->fileName = t3lib_div::_GP ( 'file' );
+		if ($this->fileName === '') {
+			$this->fileName = t3lib_div::_GP ( 'file' );
+		}
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}
 	
@@ -72,6 +74,13 @@ class tx_fdfxbeimage_modcrop extends t3lib_extobjbase {
 		}
 		return $content;
 	}
+	
+	public function setFileName($fName) {
+		if (file_exists ( $fName )) {
+			$this->fileName = $fName;
+		}
+	}
+	
 }
 
 if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modcrop.php']) {

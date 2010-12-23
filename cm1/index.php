@@ -107,11 +107,11 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 			case '1' :
 				$this->doc->form = '<form action="" method="POST">';
 				$this->_initImageObject ( 'Crop' );
-				$this->doc->JScode .= $this->imgObj->_getHeader ();
+				$this->doc->JScode .= $this->imgObj->getHeader ();
 				break;
 			case '2' :
 				$this->_initImageObject ( 'Rotate' );
-				$this->doc->JScode .= $this->imgObj->_getHeader ();
+				$this->doc->JScode .= $this->imgObj->getHeader ();
 				break;
 		}
 		// Creating file management object:
@@ -152,12 +152,12 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 		switch (( string ) $this->MOD_SETTINGS ['function']) {
 			case 1 :
 				$content = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_text' );
-				$content .= $this->imgObj->_getContent ();
+				$content .= $this->imgObj->getContent ();
 				$this->content .= $this->doc->section ( $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_section_header' ), $content, 0, 1 );
 				break;
 			case 2 :
 				$content = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_text' );
-				$content .= $this->imgObj->_getContent ();
+				$content .= $this->imgObj->getContent ();
 				$this->content .= $this->doc->section ( $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_section_header' ), $content, 0, 1 );
 				break;
 			case 3 :

@@ -25,7 +25,7 @@
  * @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
  * @version:		$Rev$
  * @package:		TYPO3
- * @subpackage:	fdfx_be_image
+ * @subpackage:		fdfx_be_image
  * 
  */
 class tx_fdfxbeimage_Image_Basic {

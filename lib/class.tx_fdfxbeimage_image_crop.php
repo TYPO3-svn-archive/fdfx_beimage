@@ -131,6 +131,7 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VARS'] ["SYS"] ["encryptionKey"], array ('crop', $fileNameLocal ) ) . '");
 autoCrop=' . ((intval ( $this->conf ['FIXED_SIZE_DEFAULT'] ) > 0) ? 1 : 0) . ';
 init_imageCrop();
+resizeWinTo();
 </script>
 ';
 		return $content;
@@ -197,6 +198,20 @@ init_imageCrop();
 	function setCHash(chash)
 	{
 		md5Hash=chash;
+	}
+	/* Resize for popup */
+	function resizeWinTo() {
+		if (window.opener) {
+			var oH = crop_imageHeight + 200, oW = crop_imageWidth +300;
+			if ( !oH || window.doneAlready ) { return; }
+			var x = window; 
+			x.doneAlready = true;
+			var scW = screen.availWidth ? screen.availWidth : screen.width;
+			var scH = screen.availHeight ? screen.availHeight : screen.height;
+			var moveWidth = Math.round((scW-oW)/2), moveHeight = Math.round((scH-oH)/2);
+			if( !window.opera ) { x.moveTo(moveWidth,moveHeight); }
+			x.resizeTo( oW, oH);
+		}
 	}
 	</script>
 	<script type="text/javascript" src="' . $extPath . 'js/image-crop.js"></script>
