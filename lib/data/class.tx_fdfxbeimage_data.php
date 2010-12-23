@@ -45,6 +45,13 @@ class tx_fdfxbeimage_data {
 			if (file_exists($absFileName)) {
 				$result[$values['uid_local']] = $values['filename'];
 			} else {
+				$image = t3lib_div::makeInstance('tx_fdfxbeimage_image');
+				$params = unserialize($values['originalparams']);
+				$fileName = $image->imageCrop($params, $values['filename']);
+				$absFileName = t3lib_div::getFileAbsFileName($fileName);
+				if (file_exists($absFileName)) {
+					$result[$values['uid_local']] = $fileName;
+				}
 			}
 		}
 		return $result;			
@@ -76,8 +83,9 @@ class tx_fdfxbeimage_data {
 	}
 	
 	static public function saveStoredParamsToDb($sessionData, $fileName, $convertParams, $originalParams) {
+		$userId = (is_object($GLOBALS['BE_USER']))? $GLOBALS['BE_USER']->user['uid']:0;
 		$data = array(
-			  'cruser_id' => $GLOBALS['BE_USER']->user['uid']
+			  'cruser_id' => $userId
 			, 'uid_local' => intval($sessionData['uid_local'])
 			, 'uid_foreign' => intval($sessionData['uid_foreign'])
 			, 'filename' => $fileName
@@ -111,12 +119,14 @@ class tx_fdfxbeimage_data {
 	}
 	
 	static public function sessionSave($sessionData) {
-		$array = $GLOBALS ['BE_USER']->getSessionData ( self::$extKey );
-		if (!is_array($array)) {
-			$array = array();
+		if (is_object($GLOBALS['BE_USER'])) {
+			$array = $GLOBALS ['BE_USER']->getSessionData ( self::$extKey );
+			if (!is_array($array)) {
+				$array = array();
+			}
+			$array = array_merge($array, $sessionData);
+			$GLOBALS ['BE_USER']->setAndSaveSessionData ( self::$extKey, $array );
 		}
-		$array = array_merge($array, $sessionData);
-		$GLOBALS ['BE_USER']->setAndSaveSessionData ( self::$extKey, $array );
 	}
 	
 	static public function sessionGet() {

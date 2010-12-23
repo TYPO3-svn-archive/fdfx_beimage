@@ -44,6 +44,9 @@ class tx_fdfxbeimage_image {
 	protected $extKey = '';
 	protected $sessionData = array();
 	protected $apiCall = null;
+	protected $lastFileName;
+	protected $target = null;
+	
 	
 	/**
 	 * 
@@ -122,7 +125,13 @@ class tx_fdfxbeimage_image {
 	protected function getSessionNamePart() {
 		$namePart = '';
 		if ($this->isApiCall()) {
-			$namePart = '.' . $this->sessionData['uid_local'] . '_' . $this->sessionData['uid_foreign'] .'.';
+			if (!empty($this->sessionData)) {
+				$namePart = '.' . $this->sessionData['uid_local'] . '_' . $this->sessionData['uid_foreign'] .'.';
+			} elseif (!is_null($this->target)) {
+				$file = basename($this->target);
+				$items = explode('.', $file);
+				$namePart = '.' . $items[2] . '.';
+			}
 		}
 		return $namePart;
 	}
@@ -162,7 +171,9 @@ class tx_fdfxbeimage_image {
 	protected function _initExtFileFunc() {
 		$fileProcessor = t3lib_div::makeInstance ( 't3lib_extFileFunctions' );
 		$fileProcessor->init ( $GLOBALS ['FILEMOUNTS'], $GLOBALS ['TYPO3_CONF_VARS'] ['BE'] ['fileExtensions'] );
-		$fileProcessor->init_actionPerms ( $GLOBALS ['BE_USER']->user ['fileoper_perms'] );
+		if (is_object($GLOBALS ['BE_USER'])) {
+			$fileProcessor->init_actionPerms ( $GLOBALS ['BE_USER']->user ['fileoper_perms'] );
+		}
 		return $fileProcessor;
 	}
 	
@@ -182,36 +193,40 @@ class tx_fdfxbeimage_image {
 	
 	protected function _getDirname($file = '', &$extFF = null) {
 		$dirname = false;
-		if ($extFF == null) {
-			$extFF = $this->_initExtFileFunc ();
-		}
-		if ($this->conf ['SAME_PATH']) {
-			$dirname = dirname ( $file );
-		} elseif ($this->conf ['IS_ABSOLUTE']) {
-			if (t3lib_div::isAllowedAbsPath ( $this->conf ['NEW_PATH'] )) {
-				$dirname = $this->conf ['NEW_PATH'];
+		if (is_null($this->target)) {
+			if ($extFF == null) {
+				$extFF = $this->_initExtFileFunc ();
+			}
+			if ($this->conf ['SAME_PATH']) {
+				$dirname = dirname ( $file );
+			} elseif ($this->conf ['IS_ABSOLUTE']) {
+				if (t3lib_div::isAllowedAbsPath ( $this->conf ['NEW_PATH'] )) {
+					$dirname = $this->conf ['NEW_PATH'];
+				} else {
+					$this->errorMsg = $this->getMsg ( 'error_absolute_path_notaccessable', array ($this->conf ['NEW_PATH'] ) );
+				}
 			} else {
-				$this->errorMsg = $this->getMsg ( 'error_absolute_path_notaccessable', array ($this->conf ['NEW_PATH'] ) );
+				$data = array ('data' => $this->conf ['NEW_PATH'], 'target' => dirname ( $file ) );
+				$dirname = $data ['target'] . '/' . $data ['data'];
+				if (! file_exists ( $dirname )) {
+					$dirname = $extFF->func_newfolder ( $data );
+				}
+				if (! $dirname) {
+					$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($this->conf ['NEW_PATH'], $data ['target'] ) );
+				}
+			}
+			if ($dirname && $this->isApiCall()) {
+				$data = array ('data' => 'temp', 'target' => $dirname );
+				$dirname = $data ['target'] . '/' . $data ['data'];
+				if (! file_exists ( $dirname )) {
+					$dirname = $extFF->func_newfolder ( $data );
+				}
+				if (! $dirname) {
+					$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($data['data'], $data ['target'] ) );
+				}
 			}
 		} else {
-			$data = array ('data' => $this->conf ['NEW_PATH'], 'target' => dirname ( $file ) );
-			$dirname = $data ['target'] . '/' . $data ['data'];
-			if (! file_exists ( $dirname )) {
-				$dirname = $extFF->func_newfolder ( $data );
-			}
-			if (! $dirname) {
-				$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($this->conf ['NEW_PATH'], $data ['target'] ) );
-			}
-		}
-		if ($dirname && $this->isApiCall()) {
-			$data = array ('data' => 'temp', 'target' => $dirname );
-			$dirname = $data ['target'] . '/' . $data ['data'];
-			if (! file_exists ( $dirname )) {
-				$dirname = $extFF->func_newfolder ( $data );
-			}
-			if (! $dirname) {
-				$this->errorMsg = $this->getMsg ( 'error_relative_folder_creation', array ($data['data'], $data ['target'] ) );
-			}
+			$dirname = dirname($this->target);
 		}
 		return $dirname;
 	}
@@ -274,6 +289,15 @@ class tx_fdfxbeimage_image {
 		}
 	}
 	
+	public function imageCrop($params,$target) {
+		$this->params = $params;
+		$this->apiCall = true;
+		$this->store = true;
+		$this->target = t3lib_div::getFileAbsFileName ( $target );
+		$this->_imageCrop();
+		return $this->lastFileName;
+	}
+	
 	protected function _imageCrop() {
 		$x = preg_replace ( "/[^0-9]/si", "", $this->params ['x'] );
 		$y = preg_replace ( "/[^0-9]/si", "", $this->params ['y'] );
@@ -317,6 +341,7 @@ class tx_fdfxbeimage_image {
 						if ($this->isApiCall()) {
 							tx_fdfxbeimage_data::saveStoredParamsToDb($this->sessionData,$saveImgInfo[3],$convertParamAdd,$this->params);
 						}
+						$this->lastFileName = $saveImgInfo [3];
 						$this->content .= "alert('" . $this->getMsg ( 'success_image_saved', array ($saveImgInfo [3] ) ) . "');";
 					} else {
 						$this->content .= "alert('" . $this->getMsg ( 'error' ) . $this->errorMsg . "');";
