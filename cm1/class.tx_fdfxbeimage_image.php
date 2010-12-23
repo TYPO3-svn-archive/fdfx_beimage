@@ -93,7 +93,9 @@ class tx_fdfxbeimage_image {
 			}
 		
 		}
-		$this->sessionData = tx_fdfxbeimage_data::sessionGet();
+		if ($this->cmd == 'crop') {
+			$this->sessionData = tx_fdfxbeimage_data::sessionGet();
+		}
 	}
 	
 	protected function _checkMd5($checkArr = array ()) {
@@ -183,7 +185,7 @@ class tx_fdfxbeimage_image {
 		}
 		$namePart = $this->isApiCall() ? $this->getSessionNamePart() : $imgInfo [0] . 'x' . $imgInfo [1] .'.';     
 		$newFileName = $fileNamePrefix. $namePart . $imgInfo [2];
-		$dontCheckForUnique = $this->isApiCall();
+		$dontCheckForUnique = $this->isApiCall() || $this->cmd == 'rotate';
 		$newFilePath = $basicFF->getUniqueName ( $newFileName, $dir , $dontCheckForUnique);
 		t3lib_div::upload_copy_move ( $imgInfo [3], $newFilePath );
 		unlink ( $imgInfo [3] );
@@ -256,7 +258,7 @@ class tx_fdfxbeimage_image {
 				$dirName = $this->_getDirname ( $file, $extFF );
 				if ($dirName) {
 					// saved
-					$imgInfoNew = $this->_storeImage ( 'rotate.' . $angle . '.' . $imgObj->filenamePrefix, $dirName, $imgInfoNew, $extFF );
+					$imgInfoNew = $this->_storeImage ( $imgObj->filenamePrefix.'rotate.' . $angle . '.' , $dirName, $imgInfoNew, $extFF );
 					if ($imgInfoNew [0] > $this->conf ['MAX_WIDTH'] || $imgInfoNew [1] > $this->conf ['MAX_HEIGHT']) {
 						//we scale the image to display it in BE
 						$filenameOrg = $imgInfoNew [3];

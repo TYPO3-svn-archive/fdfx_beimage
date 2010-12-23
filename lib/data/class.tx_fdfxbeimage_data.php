@@ -118,6 +118,10 @@ class tx_fdfxbeimage_data {
 		self::sessionSave($sessionData);
 	}
 	
+	static public function sessionReset() {
+		$GLOBALS ['BE_USER']->setAndSaveSessionData ( self::$extKey, null );
+	}
+	
 	static public function sessionSave($sessionData) {
 		if (is_object($GLOBALS['BE_USER'])) {
 			$array = $GLOBALS ['BE_USER']->getSessionData ( self::$extKey );

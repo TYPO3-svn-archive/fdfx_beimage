@@ -77,6 +77,7 @@ class SC_wizard_crop {
 		global $TCA;
 
 		if ($this->doClose)	{
+			tx_fdfxbeimage_data::sessionReset();
 			$this->closeWindow();
 		} else {
 
