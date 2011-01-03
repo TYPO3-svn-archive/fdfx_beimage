@@ -10,8 +10,8 @@ CREATE TABLE tx_fdfxbeimage_dam_content_ref (
   uid_foreign int(11) DEFAULT '0' NOT NULL,
   filename varchar(255) DEFAULT '' NOT NULL,
   convertparams tinytext,
-  originalparams tinytext,
-  
+  originalparams text,
+
   PRIMARY KEY (uid),
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
