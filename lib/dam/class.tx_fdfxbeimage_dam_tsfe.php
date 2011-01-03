@@ -26,7 +26,7 @@
  * @version:		$Rev$
  * @package:		TYPO3
  * @subpackage:		fdfx_be_image
- * 
+ *
  */
 
 require_once t3lib_extMgm::extPath('dam') . 'lib/class.tx_dam_db.php';
@@ -86,23 +86,25 @@ class tx_fdfxbeimage_dam_tsfe{
 		}
 
 		$damFiles = tx_dam_db::getReferencedFiles($refTable, $uid, $refField);
-		
+
 		// Now we check if we have cropped images
-		
+
 		$this->updateProcessedImages($damFiles, $uid);
-		
+
 		$files = array_merge($files, $damFiles['files']);
 
 		return implode(',', $files);
 	}
-	
+
 	protected function updateProcessedImages(&$damFiles, $uid) {
 		$uidList = array_keys($damFiles['files']);
-		$fileList = tx_fdfxbeimage_data::fetchFileList($uidList, $uid);
-		foreach ($fileList as $key=> $fileName) {
-			$damFiles['files'][$key] = $fileName;
-		} 
-	} 
+		if (count($uidList) > 0) {
+		  $fileList = tx_fdfxbeimage_data::fetchFileList($uidList, $uid);
+		  foreach ($fileList as $key=> $fileName) {
+			  $damFiles['files'][$key] = $fileName;
+		  }
+		}
+	}
 
 }
 
