@@ -14,3 +14,5 @@ RESIZE_COMMAND=resize
 FIXED_SIZE=640x480=VGA,800x600=WGA,1024x768=XGA
 #cat=Dimensions; type=string; label=Fixed Size Default:defines index of fixed size which will be selected automatically if crop is selected. Can be overwritten in user TSConfig
 FIXED_SIZE_DEFAULT=
+#cat=Dimensions; type=string; label=Additional CSS: add addtional CSS file with path here
+CSS_FILE=

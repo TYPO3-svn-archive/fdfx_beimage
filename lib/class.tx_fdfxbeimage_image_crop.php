@@ -109,7 +109,7 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
     </div>
     <div class="item item-fixedsize">
     	<label for=""input_fixedsize">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_fixedsize' ) . '</label>
-		<select class="textInput" id="input_fixedsize">
+		<select class="textInput" id="input_fixedsize" onchange="cropScript_setSize(this)">
 			<option value=""></option>
 ' . $options . '
 		</select>
@@ -175,6 +175,7 @@ resizeWinTo();
 	<link rel="stylesheet" href="' . $extPath . 'css/xp-info-pane.css"/>
 	<link rel="stylesheet" href="' . $extPath . 'css/image-all.css" />
 	<link rel="stylesheet" href="' . $extPath . 'css/image-crop.css" />
+	' .  ($this->conf['CSS_FILE']? '<link rel="stylesheet" href="' .  $this->conf['CSS_FILE'] . '" />' : '') . '
 	<script type="text/javascript" src="' . $extPath . 'js/fdfx_error.js"></script>
 	<script type="text/javascript" src="' . $extPath . 'js/xp-info-pane.js"></script>
 	<script type="text/javascript" src="' . $extPath . 'js/ajax.js"></script>

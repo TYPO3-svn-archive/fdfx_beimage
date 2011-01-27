@@ -52,6 +52,11 @@ class tx_fdfxbeimage_Image_Basic {
 			if (isset ( $userConf ['properties'] ['fixedSize'] ) && $userConf ['properties'] ['fixedSize'] != '') {
 				$this->conf ['FIXED_SIZE'] = $userConf ['properties'] ['fixedSize'];
 			}
+			if (isset ( $userConf ['properties'] ['cssFile'] ) && $userConf ['properties'] ['ccsFile'] != '') {
+				$this->conf ['CSS_FILE'] = $userConf ['properties'] ['cssFile'];
+			}
+			
+			
 		}
 		$this->returnUrl = t3lib_div::_GP ( 'returnUrl' );
 	}

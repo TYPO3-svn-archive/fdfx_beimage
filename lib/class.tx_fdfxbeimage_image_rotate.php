@@ -122,6 +122,7 @@ setCHash("' . tx_fdfxbeimage_image::getEncryptionMd5 ( $GLOBALS ['TYPO3_CONF_VAR
 	<link rel="stylesheet" href="' . $extPath . 'css/xp-info-pane.css"/>
 	<link rel="stylesheet" href="' . $extPath . 'css/image-all.css" />
 	<link rel="stylesheet" href="' . $extPath . 'css/image-rotate.css" />
+	' .  ($this->conf['CSS_FILE']? '<link rel="stylesheet" href="' .  $this->conf['CSS_FILE'] . '" />' : '') . '
 	<script type="text/javascript" src="' . $extPath . 'js/jquery-1.2.1.pack.js"></script>
 	<script type="text/javascript" src="' . $extPath . 'js/jq-form.js"></script>
 	<script type="text/javascript" src="' . $extPath . 'js/jq-rotate.js"></script>
