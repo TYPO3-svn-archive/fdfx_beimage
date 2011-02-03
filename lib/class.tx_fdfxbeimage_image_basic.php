@@ -55,6 +55,12 @@ class tx_fdfxbeimage_Image_Basic {
 			if (isset ( $userConf ['properties'] ['cssFile'] ) && $userConf ['properties'] ['ccsFile'] != '') {
 				$this->conf ['CSS_FILE'] = $userConf ['properties'] ['cssFile'];
 			}
+			if (isset ( $userConf ['properties'] ['imageFormat'] ) && $userConf ['properties'] ['imageFormat'] != '') {
+				$this->conf ['IMAGE_FORMAT'] = $userConf ['properties'] ['imageFormat'];
+			}
+			if (!$this->conf ['IMAGE_FORMAT']) {
+				$this->conf ['IMAGE_FORMAT']='jpg';
+			}
 			
 			
 		}

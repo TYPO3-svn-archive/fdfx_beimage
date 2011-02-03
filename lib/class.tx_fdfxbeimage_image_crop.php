@@ -41,6 +41,13 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
 			list ( $value, $option ) = explode ( '=', $line );
 			$options .= '<option value="' . $value . '"' . $sel . '>' . $option . '</option>';
 		}
+		$formats = explode( ',', $this->conf ['IMAGE_FORMAT'] );
+		$imageOptions = '';
+		foreach ( $formats as $format ) {
+			$format = strtolower($format);
+			$sel = ($convertTo == $format) ? ' selected="selected"' : '';
+			$imageOptions .= '<option value="' . $format . '"' . $sel . '>' . strtoupper($format) . '</option>';
+		}	
 		$fI = t3lib_div::split_fileref ( $this->fileName );
 		$fileNameLocal = substr ( $this->fileName, strlen ( PATH_site ) );
 		$fileName = t3lib_div::isFirstPartOfStr ( $this->fileName, PATH_site ) ? '../../../../' . (($this->fileNameLocal) ? $this->fileNameLocal : $fileNameLocal) : $fI ['file'];
@@ -102,9 +109,7 @@ class tx_fdfxbeimage_Image_Crop extends tx_fdfxbeimage_Image_Basic {
     <div class="item item-convert-to">
     	<label for=""input_convert_to">' . $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_label_convert' ) . '</label>
 		<select class="textInput" id="input_convert_to">
-			<option value="jpg" ' . ($convertTo == 'jpg'? ' selected':'') . '>JPG</option>
-			<option value="png" ' . ($convertTo == 'png'? ' selected':'') . '>PNG</option>
-			<option value="gif" ' . ($convertTo == 'gif'? ' selected':'') . '>GIF</option>
+' . $imageOptions . '
 			</select>
     </div>
     <div class="item item-fixedsize">
