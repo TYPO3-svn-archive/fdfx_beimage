@@ -1,3 +1,7 @@
+11-02-04 Peter Russ <peter.russ@uon.li>
+	* added wizard support to manipulate images as part of a content element
+	* added new preset options
+	
 10-12-20 Peter Russ <peter.russ@uon.li>
 2.0.0
 	* added autoloader
