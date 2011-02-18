@@ -9,6 +9,7 @@
 		, 'tx_fdfxbeimage_image_crop'	=> $extPath . 'lib/class.tx_fdfxbeimage_image_crop.php'
 		, 'tx_fdfxbeimage_image_rotate'	=> $extPath . 'lib/class.tx_fdfxbeimage_image_rotate.php'
 		, 'tx_fdfxbeimage_modcrop'		=> $extPath . 'cm1/class.tx_fdfxbeimage_modcrop.php'
+		, 'tx_fdfxbeimage_hook_tcemain' => $extPath . 'lib/hook/class.tx_fdfxbeimage_hook_tcemain.php'
 		
 	);
 	

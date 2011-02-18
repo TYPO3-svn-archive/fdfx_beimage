@@ -31,8 +31,9 @@
 
 // DEFAULT initialization of a module [BEGIN]
 unset ( $MCONF );
-require ('conf.php');
-require ($BACK_PATH . 'init.php');
+require 'conf.php';
+require $BACK_PATH . 'init.php';
+require_once $BACK_PATH . 'template.php';
 
 $LANG->includeLLFile ( 'EXT:fdfx_be_image/cm1/locallang.xml' );
 
@@ -80,7 +81,7 @@ class tx_fdfxbeimage_cm1 extends t3lib_SCbase {
 	}
 	
 	protected function _initImageObject($class = 'Crop') {
-		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image' . $class );
+		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_' . $class );
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}
 	
