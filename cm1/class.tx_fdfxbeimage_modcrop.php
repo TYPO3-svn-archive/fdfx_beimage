@@ -25,21 +25,24 @@
  * @copyright:		(c) Peter Russ (peter.russ@uon.li), 2006 -2011
  * @version:		$Rev$
  * @package:		TYPO3
- * @subpackage:	fdfx_be_image
+ * @subpackage:		fdfx_be_image
  * 
  */
 
-class tx_fdfxbeimage_modrotate extends t3lib_extobjbase {
+class tx_fdfxbeimage_modcrop extends t3lib_extobjbase {
 	protected $imgObj;
 	protected $extKey = 'fdfx_be_image';
 	protected $fileName = '';
 	
-	function _init() {
-		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_Rotate' );
-		$this->fileName = t3lib_div::_GP ( 'file' );
+	protected function _init() {
+		$this->imgObj = t3lib_div::makeInstance ( 'tx_fdfxbeimage_Image_Crop' );
+		if ($this->fileName === '') {
+			$this->fileName = t3lib_div::_GP ( 'file' );
+		}
 		$this->imgObj->_init ( $this->extKey, $this->fileName );
 	}
-	function accessCheck() {
+	
+	public function accessCheck() {
 		$dam = new tx_dam ();
 		if (method_exists ( $dam, 'access_checkAction' )) {
 			return tx_dam::access_checkAction ( 'editFile' );
@@ -51,16 +54,17 @@ class tx_fdfxbeimage_modrotate extends t3lib_extobjbase {
 		} else {
 			die ( __FILE__ . ':' . __LINE__ . 'Problem with DAM ' );
 		}
+	}
 	
+	public function head() {
+		$GLOBALS ['SOBE']->pageTitle = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function1' );
 	}
-	function head() {
-		$GLOBALS ['SOBE']->pageTitle = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_function2' );
-	}
-	function main() {
+	
+	public function main() {
 		$this->_init ();
 		$this->pObj->doc->JScode .= $this->imgObj->getHeader ();
 		
-		$content = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_rotate_text' );
+		$content = $GLOBALS ['LANG']->getLL ( 'tx_fdfxbeimage_crop_text' );
 		$content .= $this->imgObj->getContent ();
 		if ($this->imgObj->getDocHeaderButtons ()) {
 			$this->pObj->docHeaderButtons ['SAVE'] = '';
@@ -70,9 +74,16 @@ class tx_fdfxbeimage_modrotate extends t3lib_extobjbase {
 		}
 		return $content;
 	}
+	
+	public function setFileName($fName) {
+		if (file_exists ( $fName )) {
+			$this->fileName = $fName;
+		}
+	}
+	
 }
 
-if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modrotate.php']) {
-	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modrotate.php']);
+if (defined ( 'TYPO3_MODE' ) && $TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modcrop.php']) {
+	include_once ($TYPO3_CONF_VARS [TYPO3_MODE] ['XCLASS'] ['ext/fdfx_be_image/cm1/class.tx_fdfxbeimage_modcrop.php']);
 }
 ?>
