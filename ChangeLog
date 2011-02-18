@@ -1,3 +1,8 @@
+11-02-18 Peter Russ <peter.russ@uon.li>
+	* bug fix: added hook for tcemain to remove cropping information if image gets deleted
+	* fixes for TYPO3 4.5
+	* version 2.1.0
+	
 11-02-04 Peter Russ <peter.russ@uon.li>
 	* added wizard support to manipulate images as part of a content element
 	* added new preset options
