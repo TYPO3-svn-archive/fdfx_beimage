@@ -1,3 +1,6 @@
+11.02-21 Peter Russ <peter.russ@uon.li>
+	* bugfix: no also removes cropping information if there is no image left in selection :-(
+	
 11-02-18 Peter Russ <peter.russ@uon.li>
 	* bug fix: added hook for tcemain to remove cropping information if image gets deleted
 	* fixes for TYPO3 4.5

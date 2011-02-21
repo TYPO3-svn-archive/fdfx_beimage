@@ -71,12 +71,13 @@ class tx_fdfxbeimage_hook_tcemain{
 	}
 	
 	protected function removeImagesFromProcessList($id, $allowedUids = '') {
-		if (!empty($allowedUids) && $id > 0) {
+		if ($id > 0) {
+			$and = empty($allowedUids)? '' : ' AND NOT(uid_local in (' . $allowedUids. '))';
 			$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 				'tx_fdfxbeimage_dam_content_ref'
-				, 'uid_foreign = ' . $id . ' AND NOT(uid_local in (' . $allowedUids. '))'
+				, 'uid_foreign = ' . $id . $and
 			);
-		}		
+		}
 	}
 }
 
